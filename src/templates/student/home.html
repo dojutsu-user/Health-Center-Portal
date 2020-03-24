@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% include "nav.html" %}
+{% include "header.html" %}
+
+<section class="mb-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mb-5">
+          <h1 class="display-4">The Future Of Medical Website</h1>
+          <p class="lead text-secondary">A free bootstrap template by <a href="https://uicookies.com/" target="_blank">uicookies.com</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="probootstrap-features-1">
+    <div class="container">
+      <div class="row">
+        <div class="col-md probootstrap-feature-item" style="background-image: url(images/img_1.jpg);">
+          <div class="probootstrap-feature-item-text">
+            <span class="icon"><i class="flaticon-first-aid-kit display-4"></i></span>
+            <h2>Pediatric <span>Therapy</span></h2>
+          </div>
+        </div> 
+        <div class="col-md probootstrap-opening">
+          <h2 class="text-uppercase mb-3">Opening Hour <span>Medical Center</span></h2>
+          <ul class="list-unstyled probootstrap-schedule">
+            <li>Mon-Fri <span>5:00-17:00</span></li>
+            <li>Sat <span>6:30-17:00</span></li>
+            <li>Sun <span>6:30-17:00</span></li>
+          </ul>
+        </div> 
+        <div class="col-md probootstrap-feature-item" style="background-image: url(images/img_2.jpg);">
+          <div class="probootstrap-feature-item-text">
+            <span class="icon"><i class="flaticon-gym-control-of-exercises-with-a-list-on-a-clipboard-and-heart-beats display-4"></i></span>
+            
+            <h2>Psychiatric <span>Therapy</span></h2>
+          </div>
+        </div> 
+      </div>
+    </div>
+  </section>
+
+  <section class="probootstrap-services">
+    <div class="container">
+      <div class="row no-gutters">
+        <div class="col-md-3 probootstrap-aside-stretch-left">
+          <div class="mb-3">
+            <h2 class="h6">About</h2>
+            <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus aliquet ex vitae viverra sodales. Ut molestie est quam, vel hendrerit lacus bibendum a.</p>
+            <p><a href="#" class="arrow-link text-white">More information  <i class="icon-chevron-right"></i></a></p>
+          </div>
+        </div>
+        <div class="col-md-9 pl-md-5 pl-0">
+          <div class="row mb-5">
+              
+              <div class="col">
+                <div class="media d-block mb-4 text-left probootstrap-media">
+                  <div class="media-body">
+                    <h2 class="h6 mt-0 text-secondary">Latest Announcements</h3>
+                    <ul>
+                    <li>Far far away, behind the word mountains, far from the countries Vokalia.</li>
+                    <li>Far far away, behind the word mountains, far from the countries Vokalia.</li>
+                    <li>Far far away, behind the word mountains, far from the countries Vokalia.</li>
+                    <li>Far far away, behind the word mountains, far from the countries Vokalia.</li>
+                    <li>Far far away, behind the word mountains, far from the countries Vokalia.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="probootstrap-section bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h2 class="h1">Our Doctors</h2>
+          <p class="lead text-secondary">Far far away, behind the word mountains, far from the countries Vokalia.</p>
+          <div class="row justify-content-center">
+            <div class="col-md-3"><a href="#" class="btn btn-secondary btn-block">Login</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="probootstrap-section" id="section-counter">
+      <div class="container">
+        <div class="row">
+          <div class="col-md probootstrap-animate">
+            <div class="probootstrap-counter text-center">
+              <span class="probootstrap-number" data-number="22">0</span>
+              <span class="probootstrap-label">Founders</span>
+            </div>
+          </div>
+          <div class="col-md probootstrap-animate">
+            <div class="probootstrap-counter text-center">
+              <span class="probootstrap-number" data-number="182">0</span>
+              <span class="probootstrap-label">Number of Staffs</span>
+            </div>
+          </div>
+          <div class="col-md probootstrap-animate">
+            <div class="probootstrap-counter text-center">
+              <span class="probootstrap-number" data-number="8921">0</span>
+              <span class="probootstrap-label">Happy Patients</span>
+            </div>
+          </div>    
+          <div class="col-md probootstrap-animate">
+            <div class="probootstrap-counter text-center">
+              <span class="probootstrap-number" data-number="252">0</span>
+              <span class="probootstrap-label">Business Partner</span>
+            </div>
+          </div>    
+        </div>
+      </div>
+    </section>
+
+    {% include "footer.html" %}
+
+  {% endblock %}

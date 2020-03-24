@@ -1,0 +1,105 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>{% block dashboard_title %}Dashboard | Health Center Portal | IIIT Lucknow{% endblock %}</title>
+
+        <!-- Styles -->
+        <link href="{% static 'dashboard/assets/css/lib/weather-icons.css' %}" rel="stylesheet" />
+        <link href="{% static 'dashboard/assets/css/lib/owl.carousel.min.css' %}" rel="stylesheet" />
+        <link href="{% static 'dashboard/assets/css/lib/owl.theme.default.min.css' %}" rel="stylesheet" />
+        <link href="{% static 'dashboard/assets/css/lib/font-awesome.min.css' %}" rel="stylesheet">
+        <link href="{% static 'dashboard/assets/css/lib/themify-icons.css' %}" rel="stylesheet">
+        <link href="{% static 'dashboard/assets/css/lib/menubar/sidebar.css' %}" rel="stylesheet">
+        <link href="{% static 'dashboard/assets/css/lib/bootstrap.min.css' %}" rel="stylesheet">
+
+        <link href="{% static 'dashboard/assets/css/lib/helper.css' %}" rel="stylesheet">
+        <link href="{% static 'dashboard/assets/css/style.css' %}" rel="stylesheet">
+        <link href="{% static 'dashboard/assets/css/custom.css' %}" rel="stylesheet">
+
+        {% block dashboard_css_files %}
+        {% endblock %}
+
+    </head>
+
+    <body>
+    {% block content %}
+    {% endblock %}
+
+        <!-- jquery vendor -->
+        <script src="{% static 'dashboard/assets/js/lib/jquery.min.js' %}"></script>
+        <script src="{% static 'dashboard/assets/js/lib/jquery.nanoscroller.min.js' %}"></script>
+        <!-- nano scroller -->
+        <script src="{% static 'dashboard/assets/js/lib/menubar/sidebar.js' %}"></script>
+        <script src="{% static 'dashboard/assets/js/lib/preloader/pace.min.js' %}"></script>
+        <!-- sidebar -->
+        <script src="{% static 'dashboard/assets/js/lib/bootstrap.min.js' %}"></script>
+
+        <!-- bootstrap -->
+
+        <script src="{% static 'dashboard/assets/js/lib/circle-progress/circle-progress.min.js' %}"></script>
+        <script src="{% static 'dashboard/assets/js/lib/circle-progress/circle-progress-init.js' %}"></script>
+
+        <script src="{% static 'dashboard/assets/js/lib/morris-chart/raphael-min.js' %}"></script>
+        <script src="{% static 'dashboard/assets/js/lib/morris-chart/morris.js' %}"></script>
+        <script src="{% static 'dashboard/assets/js/lib/morris-chart/morris-init.js' %}"></script>
+
+        <!--  flot-chart js -->
+        <script src="{% static 'dashboard/assets/js/lib/flot-chart/jquery.flot.js' %}"></script>
+        <script src="{% static 'dashboard/assets/js/lib/flot-chart/jquery.flot.resize.js' %}"></script>
+        <script src="{% static 'dashboard/assets/js/lib/flot-chart/flot-chart-init.js' %}"></script>
+        <!-- // flot-chart js -->
+
+        <script src="{% static 'dashboard/assets/js/lib/vector-map/jquery.vmap.js' %}"></script>
+        <!-- scripit init-->
+        <script src="{% static 'dashboard/assets/js/lib/vector-map/jquery.vmap.min.js' %}"></script>
+        <!-- scripit init-->
+        <script src="{% static 'dashboard/assets/js/lib/vector-map/jquery.vmap.sampledata.js' %}"></script>
+        <!-- scripit init-->
+        <script src="{% static 'dashboard/assets/js/lib/vector-map/country/jquery.vmap.world.js' %}"></script>
+        <!-- scripit init-->
+        <script src="{% static 'dashboard/assets/js/lib/vector-map/country/jquery.vmap.algeria.js' %}"></script>
+        <!-- scripit init-->
+        <script src="{% static 'dashboard/assets/js/lib/vector-map/country/jquery.vmap.argentina.js' %}"></script>
+        <!-- scripit init-->
+        <script src="{% static 'dashboard/assets/js/lib/vector-map/country/jquery.vmap.brazil.js' %}"></script>
+        <!-- scripit init-->
+        <script src="{% static 'dashboard/assets/js/lib/vector-map/country/jquery.vmap.france.js' %}"></script>
+        <!-- scripit init-->
+        <script src="{% static 'dashboard/assets/js/lib/vector-map/country/jquery.vmap.germany.js' %}"></script>
+        <!-- scripit init-->
+        <script src="{% static 'dashboard/assets/js/lib/vector-map/country/jquery.vmap.greece.js' %}"></script>
+        <!-- scripit init-->
+        <script src="{% static 'dashboard/assets/js/lib/vector-map/country/jquery.vmap.iran.js' %}"></script>
+        <!-- scripit init-->
+        <script src="{% static 'dashboard/assets/js/lib/vector-map/country/jquery.vmap.iraq.js' %}"></script>
+        <!-- scripit init-->
+        <script src="{% static 'dashboard/assets/js/lib/vector-map/country/jquery.vmap.russia.js' %}"></script>
+        <!-- scripit init-->
+        <script src="{% static 'dashboard/assets/js/lib/vector-map/country/jquery.vmap.tunisia.js' %}"></script>
+        <!-- scripit init-->
+        <script src="{% static 'dashboard/assets/js/lib/vector-map/country/jquery.vmap.europe.js' %}"></script>
+        <!-- scripit init-->
+        <script src="{% static 'dashboard/assets/js/lib/vector-map/country/jquery.vmap.usa.js' %}"></script>
+        <!-- scripit init-->
+        <script src="{% static 'dashboard/assets/js/lib/vector-map/vector.init.js' %}"></script>
+
+        <script src="{% static 'dashboard/assets/js/lib/weather/jquery.simpleWeather.min.js' %}"></script>
+        <script src="{% static 'dashboard/assets/js/lib/weather/weather-init.js' %}"></script>
+        <script src="{% static 'dashboard/assets/js/lib/owl-carousel/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'dashboard/assets/js/lib/owl-carousel/owl.carousel-init.js' %}"></script>
+        <script src="{% static 'dashboard/assets/js/scripts.js' %}"></script>
+        <!-- scripit init-->
+
+        {% block dashboard_script_files %}
+        {% endblock %}
+
+    </body>
+
+</html>

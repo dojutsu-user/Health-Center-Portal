@@ -1,0 +1,20 @@
+.google--login svg {
+  width: 2em;
+  height: 2em;
+  margin-bottom: -8px;
+  margin-right: 5px;
+}
+
+.google--login {
+  color: white;
+  background: #DD4B39
+}
+
+.google--login:hover,
+.google--login:focus {
+  background: #E74B37;
+}
+
+ul.errorlist {
+  color: red;
+}
