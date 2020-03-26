@@ -1,0 +1,90 @@
+{% extends "dashboard/student/dashboard_student_base.html" %}
+
+{% block student_medicines_stock_active %}active{% endblock %}
+
+{% block main_content %}
+
+    {% include "dashboard/dashboard_header.html" with full_name=student.user.get_full_name.title %}
+
+    <div class="content-wrap">
+        <div class="main">
+            <div class="container-fluid">
+                <section id="main-content">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <h4 class="card-title mb-3">Medicines</h4>
+                                        <input type="text" id="medicine-search" onkeyup="medicineSearch()" class="mb-3  tdl-new form-control" placeholder="Search ...">
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="medicine-info-table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col" class="text-left">Name Of The Medicine</th>
+                                                    <th scope="col" class="text-left">Availability</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for medicine in medicines %}
+                                                    <tr>
+                                                        <th scope="row">{{ forloop.counter }}</th>
+                                                        <td class="text-left">{{ medicine.name }}</td>
+                                                        <td class="text-left">
+                                                            {% if medicine.is_available %}
+                                                                <span class="badge badge-success">Available</span>
+                                                            {% else %}
+                                                                <span class="badge badge-danger">Not Available</span>
+                                                            {% endif %}
+                                                        </td>
+                                                    </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="footer">
+                                <p class="text-break">2020 © Health Center Portal, IIIT Lucknow.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block dashboard_script_files %}
+
+    {{ block.super }}
+
+    <script>
+        function medicineSearch() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("medicine-search");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("medicine-info-table");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+
+{% endblock %}

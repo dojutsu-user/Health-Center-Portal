@@ -7,7 +7,8 @@ from django.shortcuts import redirect
 
 from student.forms import LoginForm
 from doctor.models import Doctor
-from student.models import Student
+from medicines.models import Medicine
+from student.models import Student, VisitHistory
 from student.mixins import UserMustBeStudentMixin
 
 
@@ -43,7 +44,25 @@ class StudentDashboard(UserMustBeStudentMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         student = Student.objects.get(user=self.request.user)
+        visits = VisitHistory.objects.filter(student=student)
+
         kwargs.update({
-            'student': student
+            'student': student,
+            'visits': visits,
+        })
+        return kwargs
+
+
+class MedicineStockView(UserMustBeStudentMixin, TemplateView):
+    http_method_names = ['get']
+    template_name = 'dashboard/student/dashboard_student_medicine_stock.html'
+
+    def get_context_data(self, **kwargs):
+        student = Student.objects.get(user=self.request.user)
+        medicines = Medicine.objects.all()
+
+        kwargs.update({
+            'student': student,
+            'medicines': medicines,
         })
         return kwargs

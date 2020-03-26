@@ -1,0 +1,119 @@
+{% extends "dashboard/doctor/dashboard_doctor_base.html" %}
+
+{% block doctor_list_of_patients_active %}active{% endblock %}
+
+{% block main_content %}
+
+    {% include "dashboard/dashboard_header.html" with full_name=doctor.user.get_full_name.title %}
+
+    <div class="content-wrap">
+        <div class="main">
+            <div class="container-fluid">
+                <section id="main-content">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    {% if object_list %}
+                                        <h4 class="card-title mb-3">Past Visits</h4>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Date</th>
+                                                        <th scope="col">Time</th>
+                                                        <th scope="col">Patient's Name</th>
+                                                        <th scope="col">Patient's Email</th>
+                                                        <th scope="col" class="text-left">Details</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for visit in object_list %}
+                                                        <tr>
+                                                            <th scope="row">{{ forloop.counter }}</th>
+                                                            <td>{{ visit.timestamp|date:"D, d M, Y" }}</td>
+                                                            <td>{{ visit.timestamp|date:"h:i A" }}</td>
+                                                            <td>{{ visit.student.user.get_full_name.title }}</td>
+                                                            <td>{{ visit.student.user.email }}</td>
+                                                            <td class="text-left">
+                                                                <a href="#" data-toggle="modal" data-target="#detail-{{ visit.id }}">See Details</a>
+                                                            </td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    {% else %}
+                                        No Patients Found.
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="footer">
+                                <p>2020 © Health Center Portal, IIIT Lucknow.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modals -->
+
+    {% for visit in object_list %}
+        <div class="modal fade" id="detail-{{ visit.id }}" tabindex="-1" role="dialog" aria-labelledby="detail-label-{{ visit.id }}" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {% if visit.medicinegivenhistory_set.all.exists or visit.details %}
+                            {% if visit.medicinegivenhistory_set.all.exists %}
+                                <h6 class="mb-3">Medicines Issued</h6>
+                                <div class="table-responsive">
+                                    <table class="table mb-4 table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Medicine Name</th>
+                                                <th scope="col">Quantity</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for medicine_data in visit.medicinegivenhistory_set.all %}
+                                                <tr>
+                                                    <th scope="row">{{ forloop.counter }}</th>
+                                                    <td>{{ medicine_data.medicine.name }}</td>
+                                                    <td>{{ medicine_data.quantity }}</td>
+                                                <tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            {% endif %}
+                            {% if visit.details %}
+                                <h6>Details</h6>
+                                <pre>{{ visit.details }}</pre>
+                            {% endif %}]
+                        {% else %}
+                            No Details Available
+                        {% endif %}
+                    </div>
+                    <div class="modal-footer">
+                        <p>{{ visit.timestamp }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}]
+
+{% endblock %}

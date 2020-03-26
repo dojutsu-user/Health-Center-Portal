@@ -2,7 +2,10 @@
 Utilities functions.
 """
 
+import os
+import uuid
 from django.conf import settings
+from django.core.exceptions import ValidationError
 
 
 def image_upload_util(instance, filename):
@@ -15,5 +18,6 @@ def image_upload_util(instance, filename):
 
 def image_file_size_validator(image):
     file_size = image.size
+    print(file_size)
     if file_size > settings.MAX_ALLOWED_IMAGE_SIZE_IN_MB * 1024 * 1024:
         raise ValidationError(f'Maximum allowed file size is {settings.MAX_ALLOWED_IMAGE_SIZE_IN_MB} MB.')

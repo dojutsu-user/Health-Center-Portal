@@ -1,64 +1,113 @@
-{% extends "dashboard/dashboard_base.html" %}
+{% extends "dashboard/student/dashboard_student_base.html" %}
 
-{% block content %}
-{% include "dashboard/student/dashboard_student_sidenav.html" %}
-{% include "dashboard/dashboard_header.html" with full_name=student.user.get_full_name.title %}
+{% block student_dashboard_active %}active{% endblock %}
 
-<div class="content-wrap">
-            <div class="main">
-                <div class="container-fluid">
-{% include "dashboard/dashboard_breadcrumb.html" with current_location="Medical History" %}
+{% block main_content %}
 
-<section id="main-content">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title mb-3">Medical History</h4>
-                    <table class="table table-hover table-responsive">
-                    <thead>
-                        <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        </tr>
-                        <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        </tr>
-                        <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        </tr>
-                    </tbody>
-                    </table>
-                </div>
+    {% include "dashboard/dashboard_header.html" with full_name=student.user.get_full_name.title %}
+
+    <div class="content-wrap">
+        <div class="main">
+            <div class="container-fluid">
+                <section id="main-content">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    {% if visits %}
+                                        <h4 class="card-title mb-3">Medical History</h4>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Date</th>
+                                                        <th scope="col">Time</th>
+                                                        <th scope="col">Doctor</th>
+                                                        <th scope="col" class="text-left">Details</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for visit in visits %}
+                                                        <tr>
+                                                            <th scope="row">{{ forloop.counter }}</th>
+                                                            <td>{{ visit.timestamp|date:"D, d M, Y" }}</td>
+                                                            <td>{{ visit.timestamp|date:"h:i A" }}</td>
+                                                            <td>{{ visit.doctor }}</td>
+                                                            <td class="text-left">
+                                                                <a href="#" data-toggle="modal" data-target="#detail-{{ visit.id }}">See Details</a>
+                                                            </td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    {% else %}
+                                        It seems that you have not visited the Health Center till now.
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="footer">
+                                    <p>2020 © Health Center Portal, IIIT Lucknow.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="footer">
-                <p>2020 © Health Center Portal, IIIT Lucknow.</p>
-            </div>
+    <!-- Modals -->
+
+    {% for visit in visits %}
+        <div class="modal fade" id="detail-{{ visit.id }}" tabindex="-1" role="dialog" aria-labelledby="detail-label-{{ visit.id }}" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
-    </div>
-</section>
-</div>
-            </div>
+        <div class="modal-body">
+            {% if visit.medicinegivenhistory_set.all.exists or visit.details %}
+                {% if visit.medicinegivenhistory_set.all.exists %}
+                    <h6 class="mb-3">Medicines Issued</h6>
+                    <div class="table-responsive">
+                        <table class="table mb-4 table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Medicine Name</th>
+                                    <th scope="col">Quantity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for medicine_data in visit.medicinegivenhistory_set.all %}
+                                    <tr>
+                                        <th scope="row">{{ forloop.counter }}</th>
+                                        <td>{{ medicine_data.medicine.name }}</td>
+                                        <td>{{ medicine_data.quantity }}</td>
+                                    <tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+                {% if visit.details %}
+                    <h6>Details</h6>
+                    <pre>{{ visit.details }}</pre>
+                {% endif %}
+            {% else %}
+                No Details Available
+            {% endif %}
         </div>
+        <div class="modal-footer">
+            <p>{{ visit.timestamp }}</p>
+        </div>
+    {% endfor %}
+
 {% endblock %}

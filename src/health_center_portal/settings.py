@@ -141,6 +141,7 @@ SOCIALACCOUNT_PROVIDERS = {
 ACCOUNT_ADAPTER = 'student.adapters.CustomAccountAdapter'
 SOCIALACCOUNT_ADAPTER = 'student.adapters.CustomSocialAccountAdapter'
 LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = 'login'
 
 
 # Project Specific Settings

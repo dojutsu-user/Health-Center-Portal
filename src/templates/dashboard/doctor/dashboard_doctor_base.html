@@ -1,0 +1,47 @@
+{% extends "dashboard/dashboard_base.html" %}
+
+{% block content %}
+
+    <!-- Navbar -->
+    <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures min-vh-100 dashboard-nav">
+        <div class="nano">
+            <div class="nano-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <span>Health Center Portal</span>
+                    </a>
+                </div>
+                <ul>
+                    <li class="{% block doctor_profile_active %}{% endblock %}"><a href="{% url 'doctor_dashboard' %}"><i class="ti-user"></i> Profile</a></li>
+                    <li class="{% block doctor_edit_profile_active %}{% endblock %}"><a href="{% url 'doctor_edit_profile' doctor.pk %}"><i class="ti-pencil"></i> Edit Profile</a></li>
+                    <li class="{% block doctor_search_active %}{% endblock %}"><a href="#"><i class="ti-search"></i> Search</a></li>
+                    <li class="{% block doctor_list_of_patients_active %}{% endblock %}"><a href="{% url 'doctor_patient_list' %}"><i class="ti-list"></i> List Of Patients</a></li>
+                    <li class="{% block doctor_medicines_stock_info_active %}{% endblock %}"><a href="{% url 'doctor_medicine_info' %}"><i class="ti-layout-grid3-alt"></i> Medicines Stock Information</a></li>
+                    <li class="{% block doctor_upcoming_appoint %}{% endblock %}"><a href="#"><i class="fa fa-users"></i> Upcoming Appointments</a></li>
+                    <li class="close-sidenav"><a href="#"><i class="ti-arrow-left"></i> Close Sidenav</a></li>
+                    <li><a href="{% url 'logout' %}"><i class="ti-close"></i> Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    {% block main_content %}
+    {% endblock %}
+
+{% endblock %}
+
+
+{% block dashboard_script_files %}
+
+    <script>
+        var ele = document.getElementsByClassName("close-sidenav")[0];
+        ele.addEventListener('click', function() {
+            var body = document.getElementsByTagName('body')[0];
+            body.classList.toggle('sidebar-hide');
+            var hamburger = document.querySelector('.hamburger.sidebar-toggle');
+            hamburger.style.display = "inline-block";
+            ele.classList.toggle('active');]
+        })
+    </script>
+
+{% endblock %}
