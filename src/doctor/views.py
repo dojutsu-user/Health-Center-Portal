@@ -1,11 +1,12 @@
 from django.shortcuts import render, reverse
-from django.views.generic import TemplateView, UpdateView, ListView
+from django.views.generic import TemplateView, UpdateView, ListView, DetailView
 from django.contrib.auth.mixins import UserPassesTestMixin
+from django.db.models import Q
 
 from doctor.mixins import UserMustBeDoctorMixin
 from doctor.models import Doctor
 from doctor.forms import DoctorUpdateProfileForm
-from student.models import VisitHistory
+from student.models import VisitHistory, Student
 from medicines.models import Medicine
 
 
@@ -70,3 +71,50 @@ class DoctorMedicineStockView(UserMustBeDoctorMixin, ListView):
         doctor = Doctor.objects.get(user=self.request.user)
         context['doctor'] = doctor
         return context
+
+
+class DoctorSearchView(UserMustBeDoctorMixin, ListView):
+    http_method_names = ['get']
+    model = Medicine
+    template_name = 'dashboard/doctor/dashboard_doctor_search.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        doctor = Doctor.objects.get(user=self.request.user)
+        context['doctor'] = doctor
+        return context
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        if not query:
+            return Student.objects.none()
+        return Student.objects.filter(
+            Q(user__email__icontains=query) |
+            Q(user__first_name__icontains=query) |
+            Q(user__last_name__icontains=query)
+        )
+
+
+class DoctorStudentDetail(UserMustBeDoctorMixin, ListView):
+    http_method_names = ['get']
+    model = VisitHistory
+    template_name = 'dashboard/doctor/dashboard_doctor_student_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        doctor = Doctor.objects.get(user=self.request.user)
+        context['doctor'] = doctor
+
+        student_pk = self.kwargs.get('pk')
+        student  = Student.objects.get(id=student_pk)
+        student_name = student.user.get_full_name().title()
+        student_email = student.user.email.lower()
+        context['student_name'] = student_name
+        context['student_email'] = student_email
+        return context
+
+    def get_queryset(self):
+        pk = self.kwargs.get('pk', None)
+        if pk is None:
+            return VisitHistory.objects.none()
+        return VisitHistory.objects.filter(student__pk=pk).order_by('-timestamp')

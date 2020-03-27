@@ -24,6 +24,8 @@
                                                 <tr>
                                                     <th scope="col">#</th>
                                                     <th scope="col" class="text-left">Name Of The Medicine</th>
+                                                    <th scope="col" class="text-left">Salt Information</th>
+                                                    <th scope="col" class="text-left">Quantity</th>
                                                     <th scope="col" class="text-left">Availability</th>
                                                 </tr>
                                             </thead>
@@ -32,6 +34,14 @@
                                                     <tr>
                                                         <th scope="row">{{ forloop.counter }}</th>
                                                         <td class="text-left">{{ medicine.name }}</td>
+                                                        <td class="text-left">
+                                                            {% if medicine.salt %}
+                                                                {{ medicine.salt }}
+                                                            {% else %}
+                                                                Not Available
+                                                            {% endif %}
+                                                        </td>
+                                                        <td class="text-left">{{ medicine.quantity }}</td>
                                                         <td class="text-left">
                                                             {% if medicine.is_available %}
                                                                 <span class="badge badge-success">Available</span>

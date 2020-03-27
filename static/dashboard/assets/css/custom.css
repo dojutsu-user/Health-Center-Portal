@@ -2,6 +2,10 @@
   min-height: 100vh;
 }
 
+.w-vh-200 {
+  width: 200vh;
+}
+
 .overflow-hidden {
   overflow-x: hidden;
 }
@@ -25,12 +29,14 @@
 
 .doctor-dp {
   width: 200px;
+  height: 200px;
   border-radius: 50%;
 }
 
 @media (max-width: 420px) {
   .doctor-dp {
     width: 150px;
+    height: 150px;
   }
 }
 

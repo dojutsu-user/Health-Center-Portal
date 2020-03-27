@@ -1,7 +1,5 @@
 {% extends "dashboard/doctor/dashboard_doctor_base.html" %}
 
-{% block doctor_list_of_patients_active %}active{% endblock %}
-
 {% block main_content %}
 
     {% include "dashboard/dashboard_header.html" with full_name=doctor.user.get_full_name.title %}
@@ -14,8 +12,8 @@
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
+                                    <h4 class="card-title mb-3">Details Of {{ student_name }} [{{ student_email }}]</h4>
                                     {% if object_list %}
-                                        <h4 class="card-title mb-3">Past Visits</h4>
                                         <div class="table-responsive">
                                             <table class="table table-bordered">
                                                 <thead>
@@ -23,8 +21,6 @@
                                                         <th scope="col">#</th>
                                                         <th scope="col">Date</th>
                                                         <th scope="col">Time</th>
-                                                        <th scope="col">Patient's Name</th>
-                                                        <th scope="col">Patient's Email</th>
                                                         <th scope="col" class="text-left">Details</th>
                                                     </tr>
                                                 </thead>
@@ -34,12 +30,8 @@
                                                             <th scope="row">{{ forloop.counter }}</th>
                                                             <td>{{ visit.timestamp|date:"D, d M, Y" }}</td>
                                                             <td>{{ visit.timestamp|date:"h:i A" }}</td>
-                                                            <td>
-                                                                <a href="{% url 'doctor_student_detail' visit.student.pk %}" class="text-primary">{{ visit.student.user.get_full_name.title }}</a>
-                                                            </td>
-                                                            <td>{{ visit.student.user.email }}</td>
                                                             <td class="text-left">
-                                                                <a href="#" data-toggle="modal" data-target="#detail-{{ visit.id }}" class="text-primary">See Details</a>
+                                                                <a href="#" data-toggle="modal" data-target="#detail-{{ visit.id }}">See Details</a>
                                                             </td>
                                                         </tr>
                                                     {% endfor %}
@@ -47,7 +39,7 @@
                                             </table>
                                         </div>
                                     {% else %}
-                                        No Patients Found.
+                                        No Details Found.
                                     {% endif %}
                                 </div>
                             </div>
@@ -116,6 +108,6 @@
                 </div>
             </div>
         </div>
-    {% endfor %}]
+    {% endfor %}
 
 {% endblock %}

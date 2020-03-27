@@ -4,6 +4,7 @@ from medicines.models import Medicine
 
 
 class MedicineAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['name', 'quantity', 'salt']
+
 
 admin.site.register(Medicine, MedicineAdmin)

@@ -6,7 +6,7 @@
     <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures min-vh-100 dashboard-nav">
         <div class="nano">
             <div class="nano-content">
-                <div class="logo"><a href="index.html"><span>Health Center Portal</span></a></div>
+                <div class="logo"><a href="{% url 'homepage' %}" target="_blank"><span>Health Center Portal</span></a></div>
                 <ul>
                     <li class="{% block student_dashboard_active %}{% endblock %}"><a href="{% url 'student_dashboard' %}"><i class="ti-user"></i> History</a></li>
                     <li class="{% block student_medicines_stock_active %}{% endblock %}"><a href="{% url 'student_medicines_stock' %}"><i class="ti-layout-grid3-alt"></i> Medicine Stock Information</a></li>
