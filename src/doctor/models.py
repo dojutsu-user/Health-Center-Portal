@@ -16,6 +16,7 @@ class Doctor(models.Model):
     about = models.TextField('About The Doctor')
     education = models.TextField('Education Details')
     available_description = models.TextField('Availability')
+    is_available = models.BooleanField('Is The Doctor Available?', default=True)
 
     def __str__(self):
         return self.get_name()

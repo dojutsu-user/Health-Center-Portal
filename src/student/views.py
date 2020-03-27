@@ -1,7 +1,7 @@
 from django.views.generic import TemplateView
 from braces.views import AnonymousRequiredMixin
 from django.contrib.auth.views import LoginView
-from django.views.generic import View
+from django.views.generic import View, ListView
 from django.contrib.auth import logout
 from django.shortcuts import redirect
 
@@ -20,15 +20,6 @@ class HomePageView(TemplateView):
 class Login(AnonymousRequiredMixin, LoginView):
     authentication_form = LoginForm
     template_name = 'student/login.html'
-
-    def get_success_url(self):
-        form_obj = self.get_form()
-        user = form_obj.get_user()
-        if Student.objects.filter(user=user).exists():
-            pass
-        elif Doctor.objects.filter(user=user).exists():
-            pass
-        return '/'
 
 
 class LogoutView(View):
@@ -66,3 +57,14 @@ class MedicineStockView(UserMustBeStudentMixin, TemplateView):
             'medicines': medicines,
         })
         return kwargs
+
+
+class ListOfDoctors(ListView):
+    http_method_names = ['get']
+    model = Doctor
+    queryset = Doctor.objects.filter(is_available=True)
+    template_name = 'student/doctors_list.html'
+
+
+class About(TemplateView):
+    template_name = 'student/about.html'

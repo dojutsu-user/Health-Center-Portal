@@ -3,15 +3,12 @@
 {% load static %}
 {% load socialaccount %}
 
-{% block title %}Login | Health Center Portal | IIIT Lucknow{% endblock %}
+{% block nav_login_active %}active{% endblock %}
 
-{% block css_files %}
-    <link rel="stylesheet" href="{% static 'theme/css/custom.css' %}">
-{% endblock %}
+{% block title %}Login | Health Center Portal | IIIT Lucknow{% endblock %}
 
 {% block content %}
 
-    {% include "nav.html" %}
     {% include "header.html" %}
 
     <section class="mb-3">

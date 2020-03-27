@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block nav_about_active %}active{% endblock %}
+
+{% block content %}
+
+    {% include "header.html" %}
+
+    <section class="mb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mb-5">
+                    <h1 class="display-4">About</h1>
+                    {% comment %} <p class="lead text-secondary">A free bootstrap template by <a href="https://uicookies.com/" target="_blank">uicookies.com</a></p> {% endcomment %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="mb-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="owl-carousel owl-theme">
+                    <div class="item"><img src="https://images.pexels.com/photos/3952379/pexels-photo-3952379.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" /></div>
+                    <div class="item"><img src="https://images.pexels.com/photos/1170979/pexels-photo-1170979.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" /></div>
+                    <div class="item"><img src="https://images.pexels.com/photos/356040/pexels-photo-356040.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" /></div>
+                    <div class="item"><img src="https://images.pexels.com/photos/48603/pexels-photo-48603.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" /></div>
+                    <div class="item"><img src="https://images.pexels.com/photos/2182979/pexels-photo-2182979.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" /></div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tincidunt dui vitae tellus elementum accumsan. Aenean mattis velit aliquam quam cursus ultricies. Proin a augue dictum, bibendum tellus sed, gravida massa. Praesent eget risus a nibh semper scelerisque ac id enim. Vivamus eleifend eget ipsum vel maximus. Duis id placerat risus. Aenean mollis pulvinar tellus at tempor. Vestibulum erat nunc, finibus ac eleifend sed, auctor non eros. Fusce ac pretium risus. Donec vel lectus eu neque mollis rutrum. Ut porttitor felis metus, sed pulvinar metus pellentesque nec.</p>
+                <p>Nulla pellentesque vestibulum odio a accumsan. Quisque consectetur, ligula eget dapibus fringilla, ligula massa feugiat felis, non aliquet lorem est sed elit. Cras vestibulum mi mauris, vitae sagittis felis pharetra id. Praesent fringilla fringilla ornare. Mauris a tortor metus. Donec bibendum blandit arcu, nec finibus justo dapibus ut. Aliquam accumsan dictum tempor. Sed sagittis ac dolor ac finibus. Morbi ac ullamcorper nunc, vel aliquet tellus. Aliquam suscipit, elit nec euismod ultrices, dui sapien accumsan augue, varius blandit orci magna in dui. Maecenas sit amet mollis ante, non tempus dui. Nunc vitae mi ultrices, tempor orci vel, lobortis est.</p>
+            </div>
+        </div>
+    </section>
+
+    {% include "footer.html" %}
+
+{% endblock %}
+
+{% block js_files %}
+<script>
+$('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:10,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:2
+        },
+        1000:{
+            items:3
+        }
+    }
+})
+</script>
+{% endblock %}

@@ -18,3 +18,22 @@
 ul.errorlist {
   color: red;
 }
+
+.home-logo {
+  width: 424px;
+  height: 96px;
+}
+
+@media (max-width: 465px) {
+  .home-logo {
+    width: 212px;
+    height: 48px;
+  }
+  .home-contact-no {
+    font-size: 25px;
+  }
+}
+
+.doctor-card-dp {
+  max-height: 250px;
+}

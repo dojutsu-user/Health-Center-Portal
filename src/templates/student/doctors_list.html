@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block nav_doctors_list_active %}active{% endblock %}
+
+{% block content %}
+
+    {% include "header.html" %}
+
+    <section class="mb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mb-5">
+                    <h1 class="display-4">Available Doctors</h1>
+                    {% comment %} <p class="lead text-secondary">A free bootstrap template by <a href="https://uicookies.com/" target="_blank">uicookies.com</a></p> {% endcomment %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="mb-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                {% for doctor in object_list %}
+                    <div class="card mx-3 my-3" style="width: 18rem;">
+                        <img class="card-img-top doctor-card-dp" src="{{ doctor.image.url }}">
+                        <div class="card-body">
+                            <p class="card-text">
+                                <h3>{{ doctor.name }}</h3>
+                            </p>
+                            {% if doctor.about %}
+                                <p class="card-text">
+                                    <h5>About</h3>
+                                    {{ doctor.about }}
+                                </p>
+                            {% endif %}
+                            {% if doctor.education %}
+                                <p class="card-text">
+                                    <h5>Educational Qualifications</h5>
+                                    {{ doctor.education }}
+                                </p>
+                            {% endif %}
+                            {% if doctor.available_description %}
+                                <p class="card-text">
+                                    <h5>Availability Timings</h5>
+                                    {{ doctor.available_description }}
+                                </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    {% include "footer.html" %}
+
+{% endblock %}

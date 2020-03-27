@@ -1,16 +1,19 @@
 {% extends "base.html" %}
 
+{% load static %}
+
+{% block nav_home_active %}active{% endblock %}
+
 {% block content %}
 
-    {% include "nav.html" %}
     {% include "header.html" %}
 
     <section class="mb-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 mb-5">
-                    <h1 class="display-4">The Future Of Medical Website</h1>
-                    <p class="lead text-secondary">A free bootstrap template by <a href="https://uicookies.com/" target="_blank">uicookies.com</a></p>
+                    <h1 class="display-4">Welcome</h1>
+                    {% comment %} <p class="lead text-secondary">A free bootstrap template by <a href="https://uicookies.com/" target="_blank">uicookies.com</a></p> {% endcomment %}
                 </div>
             </div>
         </div>
@@ -18,10 +21,10 @@
     <section class="probootstrap-features-1">
         <div class="container">
             <div class="row">
-                <div class="col-md probootstrap-feature-item" style="background-image: url(images/img_1.jpg);">
+                <div class="col-md probootstrap-feature-item" style="background-image: url({% static 'theme/images/img_1.png' %});">
                     <div class="probootstrap-feature-item-text">
                         <span class="icon"><i class="flaticon-first-aid-kit display-4"></i></span>
-                        <h2>Pediatric <span>Therapy</span></h2>
+                        {% comment %} <h2>Pediatric <span>Therapy</span></h2> {% endcomment %}
                     </div>
                 </div>
                 <div class="col-md probootstrap-opening">
@@ -32,10 +35,10 @@
                         <li>Sun <span>6:30-17:00</span></li>
                     </ul>
                 </div>
-                <div class="col-md probootstrap-feature-item" style="background-image: url(images/img_2.jpg);">
+                <div class="col-md probootstrap-feature-item" style="background-image: url({% static 'theme/images/img_2.jpg' %});">
                     <div class="probootstrap-feature-item-text">
                         <span class="icon"><i class="flaticon-gym-control-of-exercises-with-a-list-on-a-clipboard-and-heart-beats display-4"></i></span>
-                        <h2>Psychiatric <span>Therapy</span></h2>
+                        {% comment %} <h2>Psychiatric <span>Therapy</span></h2> {% endcomment %}
                     </div>
                 </div> 
             </div>
@@ -45,7 +48,7 @@
         <div class="container">
             <div class="row no-gutters">
                 <div class="col-md-3 probootstrap-aside-stretch-left">
-                    <div class="mb-3">
+                    <div class="mb-5">
                         <h2 class="h6">About</h2>
                         <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus aliquet ex vitae viverra sodales. Ut molestie est quam, vel hendrerit lacus bibendum a.</p>
                         <p><a href="#" class="arrow-link text-white">More information  <i class="icon-chevron-right"></i></a></p>
@@ -56,13 +59,11 @@
                         <div class="col">
                             <div class="media d-block mb-4 text-left probootstrap-media">
                                 <div class="media-body">
-                                    <h2 class="h6 mt-0 text-secondary">Latest Announcements</h3>
+                                    <h2 class="h2 mt-0 text-secondary">Latest Announcements</h3>
                                     <ul>
-                                        <li>Far far away, behind the word mountains, far from the countries Vokalia.</li>
-                                        <li>Far far away, behind the word mountains, far from the countries Vokalia.</li>
-                                        <li>Far far away, behind the word mountains, far from the countries Vokalia.</li>
-                                        <li>Far far away, behind the word mountains, far from the countries Vokalia.</li>
-                                        <li>Far far away, behind the word mountains, far from the countries Vokalia.</li>
+                                        <li class="mb-2">Far far away, behind the word mountains, far from the countries Vokalia.</li>
+                                        <li class="mb-2">Far far away, behind the word mountains, far from the countries Vokalia.</li>
+                                        <li class="mb-2">Far far away, behind the word mountains, far from the countries Vokalia.</li>
                                     </ul>
                                 </div>
                             </div>
@@ -72,14 +73,14 @@
             </div>
         </div>
     </section>
-    <section class="probootstrap-section bg-light">
+    <section class="probootstrap-section bg-light pt-4 pb-4">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <h2 class="h1">Our Doctors</h2>
-                    <p class="lead text-secondary">Far far away, behind the word mountains, far from the countries Vokalia.</p>
+                    <h2 class="h1 mb-4">Login To Your Dashboard</h2>
+                    {% comment %} <p class="lead text-secondary">Far far away, behind the word mountains, far from the countries Vokalia.</p> {% endcomment %}
                     <div class="row justify-content-center">
-                        <div class="col-md-3"><a href="#" class="btn btn-secondary btn-block">Login</a></div>
+                        <div class="col-md-3"><a href="{% url 'login' %}" class="btn btn-secondary btn-block">Login</a></div>
                     </div>
                 </div>
             </div>
@@ -91,26 +92,20 @@
             <div class="row">
                 <div class="col-md probootstrap-animate">
                     <div class="probootstrap-counter text-center">
-                        <span class="probootstrap-number" data-number="22">0</span>
-                        <span class="probootstrap-label">Founders</span>
+                        <span class="probootstrap-number" data-number="10">0</span>
+                        <span class="probootstrap-label">Doctor</span>
                     </div>
                 </div>
                 <div class="col-md probootstrap-animate">
                     <div class="probootstrap-counter text-center">
-                        <span class="probootstrap-number" data-number="182">0</span>
+                        <span class="probootstrap-number" data-number="10">0</span>
                         <span class="probootstrap-label">Number of Staffs</span>
                     </div>
                 </div>
                 <div class="col-md probootstrap-animate">
                     <div class="probootstrap-counter text-center">
-                        <span class="probootstrap-number" data-number="8921">0</span>
+                        <span class="probootstrap-number" data-number="300">0</span>
                         <span class="probootstrap-label">Happy Patients</span>
-                    </div>
-                </div>    
-                <div class="col-md probootstrap-animate">
-                    <div class="probootstrap-counter text-center">
-                        <span class="probootstrap-number" data-number="252">0</span>
-                        <span class="probootstrap-label">Business Partner</span>
                     </div>
                 </div>    
             </div>
