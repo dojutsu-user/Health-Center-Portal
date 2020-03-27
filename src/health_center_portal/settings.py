@@ -1,4 +1,5 @@
 import os
+import django_heroku
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '%s0_@=bu@y-$+u161@sfcuo3wgvdvdm*n+j0u3l#j%g2nix8g+'
@@ -148,3 +149,5 @@ LOGIN_URL = 'login'
 
 DOCTOR_DP_UPLOAD_FOLDER = 'doctor_dp'
 MAX_ALLOWED_IMAGE_SIZE_IN_MB = 2
+
+django_heroku.settings(locals())

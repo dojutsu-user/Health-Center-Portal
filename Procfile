@@ -1,0 +1,1 @@
+web: gunicorn src.health_center_portal.wsgi
