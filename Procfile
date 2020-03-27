@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath src.health_center_portal src.health_center_portal.wsgi --log-file -
+web: gunicorn --pythonpath src/ src.health_center_portal.wsgi --log-file -
