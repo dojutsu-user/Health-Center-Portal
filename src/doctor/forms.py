@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.forms import PasswordChangeForm
 
 from doctor.models import Doctor
 
@@ -22,4 +23,19 @@ class DoctorUpdateProfileForm(forms.ModelForm):
         })
         self.fields['available_description'].widget.attrs.update({
             'class': 'tdl-new form-control edit-profile-textarea'
+        })
+
+
+class CustomPasswordChangeForm(PasswordChangeForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['old_password'].widget.attrs.update({
+            'class': 'tdl-new form-control',
+        })
+        self.fields['new_password1'].widget.attrs.update({
+            'class': 'tdl-new form-control',
+        })
+        self.fields['new_password2'].widget.attrs.update({
+            'class': 'tdl-new form-control',
         })

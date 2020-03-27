@@ -2,6 +2,8 @@
 
 {% block doctor_list_of_patients_active %}active{% endblock %}
 
+{% block dashboard_title %}List Of Patients | Health Center Portal | IIIT Lucknow{% endblock %}
+
 {% block main_content %}
 
     {% include "dashboard/dashboard_header.html" with full_name=doctor.user.get_full_name.title %}

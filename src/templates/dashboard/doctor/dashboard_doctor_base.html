@@ -18,8 +18,9 @@
                     <li class="{% block doctor_list_of_patients_active %}{% endblock %}"><a href="{% url 'doctor_patient_list' %}"><i class="ti-list"></i> List Of Patients</a></li>
                     <li class="{% block doctor_medicines_stock_info_active %}{% endblock %}"><a href="{% url 'doctor_medicine_info' %}"><i class="ti-layout-grid3-alt"></i> Medicines Stock Information</a></li>
                     <li class="{% block doctor_upcoming_appoint %}{% endblock %}"><a href="#"><i class="fa fa-users"></i> Upcoming Appointments</a></li>
+                    <li class="{% block doctor_password_change_active %}{% endblock %}"><a href="{% url 'doctor_password_change' %}"><i class="ti-key"></i> Change Password</a></li>
                     <li class="close-sidenav"><a href="#"><i class="ti-arrow-left"></i> Close Sidenav</a></li>
-                    <li><a href="{% url 'logout' %}"><i class="ti-close"></i> Logout</a></li>
+                    <li><a href="{% url 'logout' %}"><i class="ti-power-off"></i> Logout</a></li>
                 </ul>
             </div>
         </div>

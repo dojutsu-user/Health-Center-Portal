@@ -139,10 +139,13 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
-ACCOUNT_ADAPTER = 'student.adapters.CustomAccountAdapter'
 SOCIALACCOUNT_ADAPTER = 'student.adapters.CustomSocialAccountAdapter'
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = 'login'
+ACCOUNT_USERNAME_REQUIRED = False
+ALLOWED_EMAIL_DOMAINS_FOR_SIGNUP = [
+    '@iiitl.ac.in'
+]
 
 
 # Project Specific Settings

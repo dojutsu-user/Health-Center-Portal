@@ -2,6 +2,8 @@
 
 {% block doctor_search_active %}active{% endblock %}
 
+{% block dashboard_title %}Search | Health Center Portal | IIIT Lucknow{% endblock %}
+
 {% block main_content %}
 
     {% include "dashboard/dashboard_header.html" with full_name=doctor.user.get_full_name.title %}

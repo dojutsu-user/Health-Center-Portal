@@ -24,6 +24,18 @@
         <div class="row">
             <div class="col">
                 <form method="post" class="probootstrap-form">
+
+                    {% if messages %}
+                        <ul>
+                            {% for msg in messages %}
+                                {% if msg.tags == "error" %}
+                                    <li class="text-danger">{{ msg }}</li>
+                                {% else %}
+                                    <li>{{ msg }}</li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
                     {% csrf_token %}
                     {{ form.non_field_errors }}
                     <div class="form-group">

@@ -1,11 +1,14 @@
 from django.shortcuts import render, reverse
-from django.views.generic import TemplateView, UpdateView, ListView, DetailView
+from django.views.generic import TemplateView, UpdateView, ListView, DetailView, FormView
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.db.models import Q
+from django.urls import reverse_lazy
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.messages.views import SuccessMessageMixin
 
 from doctor.mixins import UserMustBeDoctorMixin
 from doctor.models import Doctor
-from doctor.forms import DoctorUpdateProfileForm
+from doctor.forms import DoctorUpdateProfileForm,CustomPasswordChangeForm
 from student.models import VisitHistory, Student
 from medicines.models import Medicine
 
@@ -118,3 +121,19 @@ class DoctorStudentDetail(UserMustBeDoctorMixin, ListView):
         if pk is None:
             return VisitHistory.objects.none()
         return VisitHistory.objects.filter(student__pk=pk).order_by('-timestamp')
+
+
+class DoctorPasswordChangeView(UserMustBeDoctorMixin, SuccessMessageMixin, PasswordChangeView):
+    form_class = CustomPasswordChangeForm
+    http_method_names = ['get', 'post']
+    template_name = 'dashboard/doctor/dashboard_doctor_password_change.html'
+    success_message = 'Password Changed Successfully.'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        doctor = Doctor.objects.get(user=self.request.user)
+        context['doctor'] = doctor
+        return context
+
+    def get_success_url(self):
+        return reverse_lazy('doctor_password_change')

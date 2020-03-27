@@ -2,6 +2,8 @@
 
 {% block student_dashboard_active %}active{% endblock %}
 
+{% block dashboard_title %}Medical History | Health Center Portal | IIIT Lucknow{% endblock %}
+
 {% block main_content %}
 
     {% include "dashboard/dashboard_header.html" with full_name=student.user.get_full_name.title %}
