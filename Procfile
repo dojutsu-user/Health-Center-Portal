@@ -1,1 +1,1 @@
-web: gunicorn src.health_center_portal.wsgi
+web: gunicorn src.health_center_portal.wsgi --log-file -
