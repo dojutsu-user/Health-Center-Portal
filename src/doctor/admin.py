@@ -3,6 +3,7 @@ from doctor.models import Doctor
 
 
 class DoctorAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['name']
+    search_fields = ['name']
 
 admin.site.register(Doctor, DoctorAdmin)
