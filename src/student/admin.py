@@ -1,37 +1,6 @@
 from django.contrib import admin
-from django.contrib.auth.models import User
-from django.contrib.auth.admin import UserAdmin
 
 from student.models import Student, VisitHistory, MedicineGivenHistory
-
-admin.site.unregister(User)
-
-
-@admin.register(User)
-class CustomUserAdmin(UserAdmin):
-    
-    def get_readonly_fields(self, request, obj=None):
-
-        readonly_fields = [
-            'is_active',
-            'is_staff',
-            'is_superuser',
-            'groups',
-            'user_permissions',
-            'last_login',
-            'date_joined',
-        ]
-
-        if not request.user == obj:
-            readonly_fields += [
-                'username',
-                'password',
-                'first_name',
-                'last_name',
-                'email',
-            ]
-
-        return readonly_fields
 
 
 class StudentAdmin(admin.ModelAdmin):
@@ -74,7 +43,6 @@ class VisitHistoryAdmin(admin.ModelAdmin):
         if not request.user.is_superuser:
             return False
         return True
-
 
 
 admin.site.register(Student, StudentAdmin)
