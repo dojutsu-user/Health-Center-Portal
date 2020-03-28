@@ -10,4 +10,3 @@ class AnnouncementDetailView(DetailView):
     template_name = 'announcements/announcement_detail.html'
     model = Announcement
     queryset = Announcement.objects.filter(is_posted=True)
-

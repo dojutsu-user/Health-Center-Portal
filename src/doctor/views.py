@@ -11,6 +11,7 @@ from doctor.models import Doctor
 from doctor.forms import DoctorUpdateProfileForm,CustomPasswordChangeForm
 from student.models import VisitHistory, Student
 from medicines.models import Medicine
+from appointments.models import Appointment
 
 
 class DoctorDashboardView(UserMustBeDoctorMixin, TemplateView):
@@ -137,3 +138,20 @@ class DoctorPasswordChangeView(UserMustBeDoctorMixin, SuccessMessageMixin, Passw
 
     def get_success_url(self):
         return reverse_lazy('doctor_password_change')
+
+
+class DoctorAppointmentView(UserMustBeDoctorMixin, ListView):
+    
+    model = Appointment
+    ordering = '-date_created'
+    template_name = 'dashboard/doctor/dashboard_doctor_appointments.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        doctor = Doctor.objects.get(user=self.request.user)
+        context['doctor'] = doctor
+        return context
+    
+    def get_queryset(self):
+        user = self.request.user
+        return Appointment.objects.filter(doctor__user=user)

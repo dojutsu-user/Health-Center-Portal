@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'student',
     'medicines',
     'announcements',
+    'appointments',
 
     # third-party apps
     'allauth',
