@@ -13,4 +13,7 @@ class Medicine(models.Model):
     is_available = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.name
+        name = self.name
+        if self.salt:
+            name = f'{name} - {self.salt}'
+        return name

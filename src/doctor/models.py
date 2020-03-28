@@ -19,7 +19,7 @@ class Doctor(models.Model):
     is_available = models.BooleanField('Is The Doctor Available?', default=True)
 
     def __str__(self):
-        return self.get_name()
+        return f'{self.get_name()} - {self.user.email}'
 
     def get_name(self):
         return f'{self.name.title()}'

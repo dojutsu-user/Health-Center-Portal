@@ -13,7 +13,7 @@ class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.user.username
+        return f'{self.user.email.lower()} - {self.user.get_full_name().title()}'
 
 
 class VisitHistory(models.Model):
@@ -27,7 +27,9 @@ class VisitHistory(models.Model):
 
     def __str__(self):
         student_name = self.student.user.get_full_name().title()
-        return f'{student_name} - {self.timestamp}'
+        t = self.timestamp
+        date = f'{t.day}.{t.month}.{t.year}'
+        return f'{student_name} - {date}'
 
 
 class MedicineGivenHistory(models.Model):
