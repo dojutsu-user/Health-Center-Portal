@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+{% load user_type %}
 {% load static %}
 
 {% block nav_home_active %}active{% endblock %}
@@ -60,11 +61,19 @@
                             <div class="media d-block mb-4 text-left probootstrap-media">
                                 <div class="media-body">
                                     <h2 class="h2 mt-0 text-secondary mb-4">Latest Announcements</h3>
-                                    <ul>
-                                        <li class="mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit quam nulla, at efficitur tortor aliquet vitae.</li>
-                                        <li class="mb-2">Pellentesque eu diam nibh. Duis quis libero ornare, maximus ex et, iaculis nibh. Nulla molestie risus nibh, et sodales libero auctor sed.</li>
-                                        <li class="mb-2">Praesent non nunc vel felis varius dictum. Fusce rhoncus leo ligula, eget elementum ex convallis eget.</li>
-                                    </ul>
+                                    {% if announcements %}
+                                        <ul>
+                                            {% for announcement in announcements %}
+                                                <li class="mb-2">
+                                                    <a href="{% url 'announcement_detail' announcement.slug %}">
+                                                        {{ announcement.title }} - <i>{{ announcement.date_posted }}</i>
+                                                    </a>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% else %}
+                                        No Announcements Found.
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -77,11 +86,31 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <h2 class="h1 mb-4">Login To Your Dashboard</h2>
-                    {% comment %} <p class="lead text-secondary">Far far away, behind the word mountains, far from the countries Vokalia.</p> {% endcomment %}
-                    <div class="row justify-content-center">
-                        <div class="col-md-3"><a href="{% url 'login' %}" class="btn btn-secondary btn-block">Login</a></div>
-                    </div>
+                    {% if request.user.is_authenticated %}
+                        <h2 class="h1 mb-4">Visit Your Dashboard</h2>
+                        {% get_user_type request.user.pk as user_type %}
+                        {% if user_type == "student" %}
+                            <div class="row justify-content-center">
+                                <div class="col-md-3"><a href="{% url 'student_dashboard' %}" class="btn btn-secondary btn-block">Dashboard</a></div>
+                            </div>
+                        {% endif %}
+                        {% if user_type == "doctor" %}
+                            <div class="row justify-content-center">
+                                <div class="col-md-3"><a href="{% url 'doctor_dashboard' %}" class="btn btn-secondary btn-block">Dashboard</a></div>
+                            </div>
+                        {% endif %}
+                        {% if user_type == "staff" %}
+                            <div class="row justify-content-center">
+                                <div class="col-md-3"><a href="{% url 'admin:index' %}" class="btn btn-secondary btn-block">Dashboard</a></div>
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        <h2 class="h1 mb-4">Login To Your Dashboard</h2>
+                        <!-- <p class="lead text-secondary">Far far away, behind the word mountains, far from the countries Vokalia.</p> -->
+                        <div class="row justify-content-center">
+                            <div class="col-md-3"><a href="{% url 'login' %}" class="btn btn-secondary btn-block">Login</a></div>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

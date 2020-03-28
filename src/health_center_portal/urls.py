@@ -21,6 +21,8 @@ urlpatterns = [
 
     path('student/', include('student.urls')),
     path('doctor/', include('doctor.urls')),
+    path('announcement/', include('announcements.urls')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
 if settings.DEBUG:

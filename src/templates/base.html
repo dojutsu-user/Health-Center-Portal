@@ -51,6 +51,7 @@
                             {% if user_type == "staff" %}
                                 <li class="nav-item"><a href="{% url 'admin:index' %}" class="nav-link">Dashboard</a></li>
                             {% endif %}
+                            <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link">Logout</a></li>
                         {% else %}
                             <li class="nav-item {% block nav_login_active %}{% endblock %}"><a href="{% url 'login' %}" class="nav-link">Login</a></li>
                         {% endif %}

@@ -10,11 +10,17 @@ from doctor.models import Doctor
 from medicines.models import Medicine
 from student.models import Student, VisitHistory
 from student.mixins import UserMustBeStudentMixin
+from announcements.models import Announcement
 
 
 class HomePageView(TemplateView):
     http_method_names = ['get']
     template_name = 'student/home.html'
+
+    def get_context_data(self, **kwargs):
+        all_announcements = Announcement.objects.filter(is_posted=True)[:6]
+        kwargs.update({ 'announcements': all_announcements })
+        return kwargs
 
 
 class Login(AnonymousRequiredMixin, LoginView):

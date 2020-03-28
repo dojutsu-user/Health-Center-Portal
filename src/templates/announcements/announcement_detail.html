@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}{{ object.title }} | Health Center Portal | IIIT Lucknow{% endblock %}
+
+{% block content %}
+
+    {% include "header.html" %}
+
+    <section class="mb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 mb-5">
+                    <h1 class="display-4">{{ object.title }}</h1>
+                    <p class="lead text-secondary">{{ announcement.date_posted }}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="mb-5 mx-5">
+        <div class="container">
+            <div class="row">
+                {{ object.body|safe }}
+            </div>
+        </div>
+    </section>
+
+    {% include "footer.html" %}
+
+{% endblock %}
