@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'django_cleanup.apps.CleanupConfig',
     'ckeditor',
+    'bootstrap_datepicker_plus',
 ]
 
 MIDDLEWARE = [

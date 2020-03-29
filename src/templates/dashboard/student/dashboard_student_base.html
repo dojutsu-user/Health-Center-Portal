@@ -10,7 +10,8 @@
                 <ul>
                     <li class="{% block student_dashboard_active %}{% endblock %}"><a href="{% url 'student_dashboard' %}"><i class="ti-user"></i> History</a></li>
                     <li class="{% block student_medicines_stock_active %}{% endblock %}"><a href="{% url 'student_medicines_stock' %}"><i class="ti-layout-grid3-alt"></i> Medicine Stock Information</a></li>
-                    <li><a href="app-profile.html"><i class="ti-pencil-alt"></i> Book Appointment</a></li>
+                    <li class="{% block student_appoint_create_active %}{% endblock %}"><a href="{% url 'student_appoint_create' %}"><i class="ti-pencil-alt"></i> New Appointment</a></li>
+                    <li class="{% block student_all_appoint_active %}{% endblock %}"><a href="{% url 'student_all_appoint' %}"><i class="ti-list"></i> All Appointments</a></li>
                     <li class="close-sidenav"><a href="#"><i class="ti-arrow-left"></i> Close Sidenav</a></li>
                     <li><a href="{% url 'logout' %}"><i class="ti-power-off"></i> Logout</a></li>
                 </ul>

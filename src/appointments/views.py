@@ -1,7 +1,8 @@
 import time
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.messages.views import SuccessMessageMixin
-from django.views.generic import View, RedirectView
+from django.views.generic import RedirectView, CreateView
 from django.urls import reverse_lazy
 from django.contrib import messages
 
@@ -9,6 +10,8 @@ from doctor.mixins import UserMustBeDoctorMixin
 from appointments.models import Appointment
 from doctor.models import Doctor
 from student.mixins import UserMustBeStudentMixin
+from appointments.forms import AppointmentCreateForm
+from student.models import Student
 
 
 class AppointmentUpdateView(UserMustBeDoctorMixin, RedirectView):
@@ -49,3 +52,30 @@ class AppointmentUpdateView(UserMustBeDoctorMixin, RedirectView):
                 appoint.save()
 
         return super().get(self, *args, **kwargs)
+
+
+class AppointmentCreateView(UserMustBeStudentMixin, CreateView):
+
+    template_name = 'dashboard/student/dashboard_student_appoint_create.html'
+    form_class = AppointmentCreateForm
+
+    def get_success_url(self):
+        return reverse_lazy('student_all_appoint')
+
+    def form_valid(self, form):
+        data = {
+            'doctor': form.cleaned_data.get('doctor'),
+            'date_of_appointment': form.cleaned_data.get('date_of_appointment'),
+            'student': Student.objects.get(user=self.request.user),
+        }
+
+        obj = Appointment.objects.create(**data)
+        obj.save()
+
+        return HttpResponseRedirect(self.get_success_url())
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        student = Student.objects.get(user=self.request.user)
+        context['student'] = student
+        return context

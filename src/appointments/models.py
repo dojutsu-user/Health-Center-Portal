@@ -6,7 +6,7 @@ from doctor.models import Doctor
 
 class Appointment(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE, limit_choices_to={'is_available': True})
     msg = models.TextField(blank=True, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
     date_of_appointment = models.DateTimeField()

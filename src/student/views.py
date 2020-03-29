@@ -1,3 +1,4 @@
+from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import TemplateView
 from braces.views import AnonymousRequiredMixin
 from django.contrib.auth.views import LoginView
@@ -11,6 +12,7 @@ from medicines.models import Medicine
 from student.models import Student, VisitHistory
 from student.mixins import UserMustBeStudentMixin
 from announcements.models import Announcement
+from appointments.models import Appointment
 
 
 class HomePageView(TemplateView):
@@ -63,6 +65,21 @@ class MedicineStockView(UserMustBeStudentMixin, TemplateView):
             'medicines': medicines,
         })
         return kwargs
+
+
+class StudentAppointmentListView(UserMustBeStudentMixin, ListView):
+
+    template_name = 'dashboard/student/dashboard_student_appoint_list.html'
+    model = Appointment
+
+    def get_queryset(self):
+        return Appointment.objects.filter(student__user=self.request.user).order_by('-date_created')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        student = Student.objects.get(user=self.request.user)
+        context['student'] = student
+        return context
 
 
 class ListOfDoctors(ListView):

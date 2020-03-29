@@ -1,0 +1,120 @@
+{% extends "dashboard/student/dashboard_student_base.html" %}
+
+{% block student_all_appoint_active %}active{% endblock %}
+
+{% block dashboard_title %}Appointments | Health Center Portal | IIIT Lucknow{% endblock %}
+
+{% block main_content %}
+
+    {% include "dashboard/dashboard_header.html" with full_name=student.user.get_full_name.title %}
+
+    <div class="content-wrap">
+        <div class="main">
+            <div class="container-fluid">
+                <section id="main-content">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    {% if object_list %}
+                                        <h4 class="card-title mb-3">All Appointments</h4>
+                                        {% if messages %}
+                                            {% for msg in messages %}
+                                                <ul>
+                                                    {% if msg.tags == "success" %}
+                                                        <li class="text-success">{{ msg }}</li>
+                                                    {% endif %}
+                                                </ul>
+                                            {% endfor %}
+                                        {% endif %}
+
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Doctor's Name</th>
+                                                        <th scope="col">Doctor's Email</th>
+                                                        <th scope="col">Date</th>
+                                                        <th scope="col">Time</th>
+                                                        <th scope="col" class="text-left">Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for appoint in object_list %}
+                                                        <tr>
+                                                            <th scope="row">{{ forloop.counter }}</th>
+                                                            <td>{{ appoint.doctor.get_name }}</td>
+                                                            <td>{{ appoint.doctor.user.email }}</td>
+                                                            <td>{{ appoint.date_of_appointment|date:"D, d M, Y" }}</td>
+                                                            <td>{{ appoint.date_of_appointment|date:"h:i A" }}</td>
+                                                            {% if appoint.is_confirmed %}
+                                                                <td class="text-left">
+                                                                    <span class="text-success mr-3">Confirmed</span>
+                                                                </td>
+                                                            {% else %}
+                                                                {% if appoint.is_cancelled %}
+                                                                    <td class="text-left">
+                                                                        <span class="text-danger mr-2">Cancelled</span>
+                                                                        (<a href="" data-toggle="modal" data-target="#modalId-{{ appoint.pk }}">Reason</a>)
+                                                                    </td>
+                                                                {% else %}
+                                                                    <td class="text-left">
+                                                                        Status Pending
+                                                                    </td>
+                                                                {% endif %}
+                                                            {% endif %}
+                                                        </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    {% else %}
+                                        No Log Found.
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="footer">
+                                <p>2020 © Health Center Portal, IIIT Lucknow.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modals -->
+    {% for appoint in object_list %}
+        {% if appoint.is_cancelled %}
+            <div class="modal fade" id="modalId-{{ appoint.pk }}" tabindex="-1" role="dialog" aria-labelledby="modalLabel-{{ appoint.pk }}" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalLabel-{{ appoint.pk }}">Reason For Cancellation</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                            <div class="modal-body">
+                                <p>
+                                    {% if appoint.msg %}
+                                        {{ appoint.msg }}
+                                    {% else %}
+                                        No Reason Found.
+                                    {% endif %}
+                                </p>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+
+
+{% endblock %}

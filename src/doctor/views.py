@@ -143,7 +143,6 @@ class DoctorPasswordChangeView(UserMustBeDoctorMixin, SuccessMessageMixin, Passw
 class DoctorAppointmentView(UserMustBeDoctorMixin, ListView):
     
     model = Appointment
-    ordering = '-date_created'
     template_name = 'dashboard/doctor/dashboard_doctor_appointments.html'
 
     def get_context_data(self, **kwargs):
@@ -154,4 +153,4 @@ class DoctorAppointmentView(UserMustBeDoctorMixin, ListView):
     
     def get_queryset(self):
         user = self.request.user
-        return Appointment.objects.filter(doctor__user=user)
+        return Appointment.objects.filter(doctor__user=user).order_by('-date_created')
