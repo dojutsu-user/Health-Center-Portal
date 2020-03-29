@@ -1,3 +1,5 @@
+"""Admin panel settins for `announcements`."""
+
 from django.contrib import admin
 
 from announcements.models import Announcement
@@ -17,7 +19,7 @@ class AnnouncementAdmin(admin.ModelAdmin):
     ]
 
     def get_readonly_fields(self, request, obj=None):
-        
+
         if not request.user.is_superuser:
             return [
                 'author',

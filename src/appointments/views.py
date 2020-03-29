@@ -1,20 +1,27 @@
+"""Views for appointments app."""
+
 import time
+
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
-from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import RedirectView, CreateView
 from django.urls import reverse_lazy
-from django.contrib import messages
 
-from doctor.mixins import UserMustBeDoctorMixin
+from appointments.forms import AppointmentCreateForm
 from appointments.models import Appointment
+from doctor.mixins import UserMustBeDoctorMixin
 from doctor.models import Doctor
 from student.mixins import UserMustBeStudentMixin
-from appointments.forms import AppointmentCreateForm
 from student.models import Student
 
 
 class AppointmentUpdateView(UserMustBeDoctorMixin, RedirectView):
+
+    """
+    Appointment update view for doctors.
+
+    It is for confirmation/cancellation of the appointments.
+    This view is to be only used by doctors.
+    """
 
     http_method_names = ['get', 'post']
 
@@ -23,7 +30,7 @@ class AppointmentUpdateView(UserMustBeDoctorMixin, RedirectView):
         doctor = Doctor.objects.get(user=self.request.user)
         context['doctor'] = doctor
         return context
-    
+
     def get_redirect_url(self, *args, **kwargs):
         return reverse_lazy('doctor_appoint')
 
@@ -36,7 +43,7 @@ class AppointmentUpdateView(UserMustBeDoctorMixin, RedirectView):
             time_tuple = appoint.date_of_appointment.timetuple()
             appoint_time = time.strftime('%d %b, %Y %I:%M %p', time_tuple)
             return_msg_text = f'Appointment @ {appoint_time} with {appoint.student}'
-            
+
             if action == 'confirm':
                 appoint.msg = ''
                 appoint.is_confirmed = True
@@ -55,6 +62,13 @@ class AppointmentUpdateView(UserMustBeDoctorMixin, RedirectView):
 
 
 class AppointmentCreateView(UserMustBeStudentMixin, CreateView):
+
+    """
+    Appoint create view for students.
+
+    It is used to make an appointment with a doctor.
+    This views is to be only used by students.
+    """
 
     template_name = 'dashboard/student/dashboard_student_appoint_create.html'
     form_class = AppointmentCreateForm

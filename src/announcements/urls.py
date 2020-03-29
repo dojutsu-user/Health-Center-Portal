@@ -1,8 +1,14 @@
+"""`urls.py` for announcements app."""
+
 from django.urls import path
 
 from announcements.views import AnnouncementDetailView
 
 
 urlpatterns = [
-    path('<str:slug>/', AnnouncementDetailView.as_view(), name='announcement_detail'),
+    path(
+        '<str:slug>/',
+        AnnouncementDetailView.as_view(),
+        name='announcement_detail'
+    ),
 ]

@@ -1,36 +1,45 @@
-from django.contrib.messages.views import SuccessMessageMixin
-from django.views.generic import TemplateView
-from braces.views import AnonymousRequiredMixin
-from django.contrib.auth.views import LoginView
-from django.views.generic import View, ListView
-from django.contrib.auth import logout
-from django.shortcuts import redirect
+"""Views for student app."""
 
-from student.forms import LoginForm
+from django.contrib.auth import logout
+from django.contrib.auth.views import LoginView
+from django.shortcuts import redirect
+from django.views.generic import TemplateView, View, ListView
+
+from braces.views import AnonymousRequiredMixin
+
+from appointments.models import Appointment
+from announcements.models import Announcement
 from doctor.models import Doctor
 from medicines.models import Medicine
+from student.forms import LoginForm
 from student.models import Student, VisitHistory
 from student.mixins import UserMustBeStudentMixin
-from announcements.models import Announcement
-from appointments.models import Appointment
 
 
 class HomePageView(TemplateView):
+
+    """Homepage view."""
+
     http_method_names = ['get']
     template_name = 'student/home.html'
 
     def get_context_data(self, **kwargs):
         all_announcements = Announcement.objects.filter(is_posted=True)[:6]
-        kwargs.update({ 'announcements': all_announcements })
+        kwargs.update({'announcements': all_announcements})
         return kwargs
 
 
 class Login(AnonymousRequiredMixin, LoginView):
+
+    """Login view."""
+
     authentication_form = LoginForm
     template_name = 'student/login.html'
 
 
 class LogoutView(View):
+
+    """Logout view."""
 
     def get(self, request):
         logout(request)
@@ -38,6 +47,9 @@ class LogoutView(View):
 
 
 class StudentDashboard(UserMustBeStudentMixin, TemplateView):
+
+    """Dashboard view for students."""
+
     http_method_names = ['get']
     template_name = 'dashboard/student/dashboard_student_history.html'
 
@@ -53,6 +65,9 @@ class StudentDashboard(UserMustBeStudentMixin, TemplateView):
 
 
 class MedicineStockView(UserMustBeStudentMixin, TemplateView):
+
+    """Medicine stock information view for students."""
+
     http_method_names = ['get']
     template_name = 'dashboard/student/dashboard_student_medicine_stock.html'
 
@@ -69,6 +84,8 @@ class MedicineStockView(UserMustBeStudentMixin, TemplateView):
 
 class StudentAppointmentListView(UserMustBeStudentMixin, ListView):
 
+    """Appointments list view for students."""
+
     template_name = 'dashboard/student/dashboard_student_appoint_list.html'
     model = Appointment
 
@@ -83,6 +100,9 @@ class StudentAppointmentListView(UserMustBeStudentMixin, ListView):
 
 
 class ListOfDoctors(ListView):
+
+    """List of doctors view."""
+
     http_method_names = ['get']
     model = Doctor
     queryset = Doctor.objects.filter(is_available=True)
@@ -90,4 +110,7 @@ class ListOfDoctors(ListView):
 
 
 class About(TemplateView):
+
+    """About page view."""
+
     template_name = 'student/about.html'

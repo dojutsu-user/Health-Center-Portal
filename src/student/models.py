@@ -1,7 +1,5 @@
-"""
-Models related to students.
-"""
-import time
+"""Models related to student app."""
+
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -33,9 +31,17 @@ class VisitHistory(models.Model):
 
 
 class MedicineGivenHistory(models.Model):
-    medicine = models.ForeignKey(Medicine, on_delete=models.SET_NULL, null=True)
+    medicine = models.ForeignKey(
+        Medicine,
+        on_delete=models.SET_NULL,
+        null=True,
+    )
     quantity = models.PositiveIntegerField()
-    visit = models.ForeignKey(VisitHistory, on_delete=models.SET_NULL, null=True)
+    visit = models.ForeignKey(
+        VisitHistory,
+        on_delete=models.SET_NULL,
+        null=True,
+    )
 
     class Meta:
         verbose_name_plural = 'Medicine given histories'

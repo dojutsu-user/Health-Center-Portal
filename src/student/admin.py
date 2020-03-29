@@ -1,3 +1,5 @@
+"""Admin panel settings for student app."""
+
 from django.contrib import admin
 
 from student.models import Student, VisitHistory, MedicineGivenHistory
@@ -8,7 +10,7 @@ class StudentAdmin(admin.ModelAdmin):
 
 
 class MedicineGivenHistoryInline(admin.TabularInline):
-    
+
     model = MedicineGivenHistory
 
 

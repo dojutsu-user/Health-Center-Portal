@@ -1,20 +1,23 @@
-from django.shortcuts import render, reverse
-from django.views.generic import TemplateView, UpdateView, ListView, DetailView, FormView
+"""Views for doctor app."""
+
 from django.contrib.auth.mixins import UserPassesTestMixin
-from django.db.models import Q
-from django.urls import reverse_lazy
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.db.models import Q
+from django.urls import reverse_lazy
+from django.views.generic import TemplateView, UpdateView, ListView
 
+from appointments.models import Appointment
+from doctor.forms import DoctorUpdateProfileForm, CustomPasswordChangeForm
 from doctor.mixins import UserMustBeDoctorMixin
 from doctor.models import Doctor
-from doctor.forms import DoctorUpdateProfileForm,CustomPasswordChangeForm
-from student.models import VisitHistory, Student
 from medicines.models import Medicine
-from appointments.models import Appointment
+from student.models import VisitHistory, Student
 
 
 class DoctorDashboardView(UserMustBeDoctorMixin, TemplateView):
+
+    """Dashbord view for doctor."""
 
     http_method_names = ['get']
     template_name = 'dashboard/doctor/dashboard_doctor_profile.html'
@@ -28,6 +31,9 @@ class DoctorDashboardView(UserMustBeDoctorMixin, TemplateView):
 
 
 class DoctorEditProfileView(UserMustBeDoctorMixin, UserPassesTestMixin, UpdateView):
+
+    """Edit profile view for doctor."""
+
     template_name = 'dashboard/doctor/dashboard_doctor_edit_profile.html'
     form_class = DoctorUpdateProfileForm
     model = Doctor
@@ -43,10 +49,13 @@ class DoctorEditProfileView(UserMustBeDoctorMixin, UserPassesTestMixin, UpdateVi
 
     def get_success_url(self):
         obj = self.get_object()
-        return reverse('doctor_edit_profile', kwargs={'pk': obj.pk})
+        return reverse_lazy('doctor_edit_profile', kwargs={'pk': obj.pk})
 
 
 class DoctorListOfPatientsView(UserMustBeDoctorMixin, ListView):
+
+    """List of patients view for doctor."""
+
     http_method_names = ['get']
     model = VisitHistory
     ordering = 'timestamp'
@@ -64,6 +73,9 @@ class DoctorListOfPatientsView(UserMustBeDoctorMixin, ListView):
 
 
 class DoctorMedicineStockView(UserMustBeDoctorMixin, ListView):
+
+    """Medicine stock information view for doctor."""
+
     http_method_names = ['get']
     model = Medicine
     ordering = 'name'
@@ -78,6 +90,9 @@ class DoctorMedicineStockView(UserMustBeDoctorMixin, ListView):
 
 
 class DoctorSearchView(UserMustBeDoctorMixin, ListView):
+
+    """Search view for doctor."""
+
     http_method_names = ['get']
     model = Medicine
     template_name = 'dashboard/doctor/dashboard_doctor_search.html'
@@ -110,7 +125,7 @@ class DoctorStudentDetail(UserMustBeDoctorMixin, ListView):
         context['doctor'] = doctor
 
         student_pk = self.kwargs.get('pk')
-        student  = Student.objects.get(id=student_pk)
+        student = Student.objects.get(id=student_pk)
         student_name = student.user.get_full_name().title()
         student_email = student.user.email.lower()
         context['student_name'] = student_name
@@ -141,7 +156,7 @@ class DoctorPasswordChangeView(UserMustBeDoctorMixin, SuccessMessageMixin, Passw
 
 
 class DoctorAppointmentView(UserMustBeDoctorMixin, ListView):
-    
+
     model = Appointment
     template_name = 'dashboard/doctor/dashboard_doctor_appointments.html'
 
@@ -150,7 +165,7 @@ class DoctorAppointmentView(UserMustBeDoctorMixin, ListView):
         doctor = Doctor.objects.get(user=self.request.user)
         context['doctor'] = doctor
         return context
-    
+
     def get_queryset(self):
         user = self.request.user
         return Appointment.objects.filter(doctor__user=user).order_by('-date_created')

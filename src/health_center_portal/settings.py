@@ -8,7 +8,6 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -113,7 +112,6 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(os.path.dirname(BASE_DIR), 'static')
@@ -124,7 +122,6 @@ MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
 
 
 # django-allauth settings
-
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
@@ -153,7 +150,6 @@ ALLOWED_EMAIL_DOMAINS_FOR_SIGNUP = [
 
 
 # ckeditor
-
 from ckeditor.configs import DEFAULT_CONFIG
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
@@ -195,7 +191,6 @@ CKEDITOR_CONFIGS = {
 
 
 # Project Specific Settings
-
 DOCTOR_DP_UPLOAD_FOLDER = 'doctor_dp'
 MAX_ALLOWED_IMAGE_SIZE_IN_MB = 2
 

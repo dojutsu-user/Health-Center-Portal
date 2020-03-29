@@ -1,10 +1,12 @@
+"""Forms related to appointments app."""
+
 from django import forms
-from django.contrib.admin import widgets
-from bootstrap_datepicker_plus import DateTimePickerInput
 from django.utils import timezone
 
-from appointments.models import Appointment
+from bootstrap_datepicker_plus import DateTimePickerInput
+
 from doctor.models import Doctor
+from appointments.models import Appointment
 
 
 class AppointmentCreateForm(forms.ModelForm):
@@ -18,6 +20,7 @@ class AppointmentCreateForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
         self.fields['date_of_appointment'].widget = DateTimePickerInput()
         self.fields['date_of_appointment'].label = 'Select Preferred Date & Time'
         self.fields['date_of_appointment'].required = True
@@ -30,5 +33,7 @@ class AppointmentCreateForm(forms.ModelForm):
         now = timezone.now()
 
         if not data > now:
-            raise forms.ValidationError('Please select the correct values of date and time.')
+            raise forms.ValidationError(
+                'Please select the correct values of date and time.')
+
         return data

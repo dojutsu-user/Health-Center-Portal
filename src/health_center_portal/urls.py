@@ -18,7 +18,6 @@ urlpatterns = [
     path('available-doctors/', ListOfDoctors.as_view(), name='available_doctors'),
     path('about/', About.as_view(), name='about'),
     path('accounts/', include('allauth.urls')),
-
     path('student/', include('student.urls')),
     path('doctor/', include('doctor.urls')),
     path('announcement/', include('announcements.urls')),
@@ -27,5 +26,11 @@ urlpatterns = [
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(
+        settings.STATIC_URL,
+        document_root=settings.STATIC_ROOT
+    )
+    urlpatterns += static(
+        settings.MEDIA_URL,
+        document_root=settings.MEDIA_ROOT
+    )

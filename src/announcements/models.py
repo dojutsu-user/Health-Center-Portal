@@ -1,7 +1,9 @@
+"""Models related to announcement app."""
+
 from django.db import models
-from django.db.models import Q
-from ckeditor.fields import RichTextField
 from django.contrib.auth.models import User
+
+from ckeditor.fields import RichTextField
 
 
 class Announcement(models.Model):
@@ -9,7 +11,12 @@ class Announcement(models.Model):
     body = RichTextField('Body', config_name='announcements-toolbar')
     date_posted = models.DateField(null=True, blank=True)
     is_posted = models.BooleanField(default=False)
-    author = models.ForeignKey(User, on_delete=models.SET_NULL, limit_choices_to={'is_staff': True}, null=True)
+    author = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        limit_choices_to={'is_staff': True},
+        null=True,
+    )
     slug = models.SlugField(blank=True, null=True)
 
     def __str__(self):
