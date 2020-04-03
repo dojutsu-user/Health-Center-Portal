@@ -14,20 +14,21 @@ from doctor.models import Doctor
 from medicines.models import Medicine
 from student.models import VisitHistory, Student
 
+class DoctorBaseView:
 
-class DoctorDashboardView(UserMustBeDoctorMixin, TemplateView):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        doctor = Doctor.objects.get(user=self.request.user)
+        context['doctor'] = doctor
+        return context
+
+
+class DoctorDashboardView(UserMustBeDoctorMixin, DoctorBaseView, TemplateView):
 
     """Dashbord view for doctor."""
 
     http_method_names = ['get']
     template_name = 'dashboard/doctor/dashboard_doctor_profile.html'
-
-    def get_context_data(self, **kwargs):
-        doctor = Doctor.objects.get(user=self.request.user)
-        kwargs.update({
-            'doctor': doctor,
-        })
-        return kwargs
 
 
 class DoctorEditProfileView(UserMustBeDoctorMixin, UserPassesTestMixin, UpdateView):
@@ -52,7 +53,7 @@ class DoctorEditProfileView(UserMustBeDoctorMixin, UserPassesTestMixin, UpdateVi
         return reverse_lazy('doctor_edit_profile', kwargs={'pk': obj.pk})
 
 
-class DoctorListOfPatientsView(UserMustBeDoctorMixin, ListView):
+class DoctorListOfPatientsView(UserMustBeDoctorMixin, DoctorBaseView, ListView):
 
     """List of patients view for doctor."""
 
@@ -65,14 +66,8 @@ class DoctorListOfPatientsView(UserMustBeDoctorMixin, ListView):
         doctor_obj = Doctor.objects.get(user=self.request.user)
         return VisitHistory.objects.filter(doctor=doctor_obj)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        doctor = Doctor.objects.get(user=self.request.user)
-        context['doctor'] = doctor
-        return context
 
-
-class DoctorMedicineStockView(UserMustBeDoctorMixin, ListView):
+class DoctorMedicineStockView(UserMustBeDoctorMixin, DoctorBaseView, ListView):
 
     """Medicine stock information view for doctor."""
 
@@ -82,26 +77,14 @@ class DoctorMedicineStockView(UserMustBeDoctorMixin, ListView):
     template_name = 'dashboard/doctor/dashboard_doctor_medicine_stock.html'
     queryset = Medicine.objects.all()
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        doctor = Doctor.objects.get(user=self.request.user)
-        context['doctor'] = doctor
-        return context
 
-
-class DoctorSearchView(UserMustBeDoctorMixin, ListView):
+class DoctorSearchView(UserMustBeDoctorMixin, DoctorBaseView, ListView):
 
     """Search view for doctor."""
 
     http_method_names = ['get']
     model = Medicine
     template_name = 'dashboard/doctor/dashboard_doctor_search.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        doctor = Doctor.objects.get(user=self.request.user)
-        context['doctor'] = doctor
-        return context
 
     def get_queryset(self):
         query = self.request.GET.get('q')
@@ -114,16 +97,15 @@ class DoctorSearchView(UserMustBeDoctorMixin, ListView):
         )
 
 
-class DoctorStudentDetail(UserMustBeDoctorMixin, ListView):
+class DoctorStudentDetail(UserMustBeDoctorMixin, DoctorBaseView, ListView):
+
+    """Detail view of each student for doctor."""
+
     http_method_names = ['get']
     model = VisitHistory
     template_name = 'dashboard/doctor/dashboard_doctor_student_detail.html'
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        doctor = Doctor.objects.get(user=self.request.user)
-        context['doctor'] = doctor
-
         student_pk = self.kwargs.get('pk')
         student = Student.objects.get(id=student_pk)
         student_name = student.user.get_full_name().title()
@@ -139,32 +121,25 @@ class DoctorStudentDetail(UserMustBeDoctorMixin, ListView):
         return VisitHistory.objects.filter(student__pk=pk).order_by('-timestamp')
 
 
-class DoctorPasswordChangeView(UserMustBeDoctorMixin, SuccessMessageMixin, PasswordChangeView):
+class DoctorPasswordChangeView(UserMustBeDoctorMixin, SuccessMessageMixin, DoctorBaseView, PasswordChangeView):
+
+    """Change password view for doctor."""
+
     form_class = CustomPasswordChangeForm
     http_method_names = ['get', 'post']
     template_name = 'dashboard/doctor/dashboard_doctor_password_change.html'
     success_message = 'Password Changed Successfully.'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        doctor = Doctor.objects.get(user=self.request.user)
-        context['doctor'] = doctor
-        return context
-
     def get_success_url(self):
         return reverse_lazy('doctor_password_change')
 
 
-class DoctorAppointmentView(UserMustBeDoctorMixin, ListView):
+class DoctorAppointmentView(UserMustBeDoctorMixin, DoctorBaseView, ListView):
+
+    """List of appointments view for doctor."""
 
     model = Appointment
     template_name = 'dashboard/doctor/dashboard_doctor_appointments.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        doctor = Doctor.objects.get(user=self.request.user)
-        context['doctor'] = doctor
-        return context
 
     def get_queryset(self):
         user = self.request.user

@@ -11,11 +11,13 @@ from appointments.forms import AppointmentCreateForm
 from appointments.models import Appointment
 from doctor.mixins import UserMustBeDoctorMixin
 from doctor.models import Doctor
+from doctor.views import DoctorBaseView
 from student.mixins import UserMustBeStudentMixin
 from student.models import Student
+from student.views import StudentBaseView
 
 
-class AppointmentUpdateView(UserMustBeDoctorMixin, RedirectView):
+class AppointmentUpdateView(UserMustBeDoctorMixin, DoctorBaseView, RedirectView):
 
     """
     Appointment update view for doctors.
@@ -25,12 +27,6 @@ class AppointmentUpdateView(UserMustBeDoctorMixin, RedirectView):
     """
 
     http_method_names = ['get', 'post']
-
-    def get_context_data(self):
-        context = {}
-        doctor = Doctor.objects.get(user=self.request.user)
-        context['doctor'] = doctor
-        return context
 
     def get_redirect_url(self, *args, **kwargs):
         return reverse_lazy('doctor_appoint')
@@ -62,7 +58,7 @@ class AppointmentUpdateView(UserMustBeDoctorMixin, RedirectView):
         return super().get(self, *args, **kwargs)
 
 
-class AppointmentCreateView(UserMustBeStudentMixin, CreateView):
+class AppointmentCreateView(UserMustBeStudentMixin, StudentBaseView, CreateView):
 
     """
     Appoint create view for students.
@@ -88,9 +84,3 @@ class AppointmentCreateView(UserMustBeStudentMixin, CreateView):
         obj.save()
 
         return HttpResponseRedirect(self.get_success_url())
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        student = Student.objects.get(user=self.request.user)
-        context['student'] = student
-        return context

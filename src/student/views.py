@@ -16,6 +16,15 @@ from student.models import Student, VisitHistory
 from student.mixins import UserMustBeStudentMixin
 
 
+class StudentBaseView:
+
+    def get_context_data(self, **kwargs):
+        context = super().get(**kwargs)
+        student = Student.objects.get(user=self.request.user)
+        context['student'] = student
+        return context
+
+
 class HomePageView(TemplateView):
 
     """Homepage view."""
@@ -46,7 +55,7 @@ class LogoutView(View):
         return redirect('homepage')
 
 
-class StudentDashboard(UserMustBeStudentMixin, TemplateView):
+class StudentDashboard(UserMustBeStudentMixin, StudentBaseView, TemplateView):
 
     """Dashboard view for students."""
 
@@ -54,17 +63,13 @@ class StudentDashboard(UserMustBeStudentMixin, TemplateView):
     template_name = 'dashboard/student/dashboard_student_history.html'
 
     def get_context_data(self, **kwargs):
-        student = Student.objects.get(user=self.request.user)
+        context = super().get_context_data(**kwargs)
         visits = VisitHistory.objects.filter(student=student)
-
-        kwargs.update({
-            'student': student,
-            'visits': visits,
-        })
-        return kwargs
+        context['visits'] = visits
+        return context
 
 
-class MedicineStockView(UserMustBeStudentMixin, TemplateView):
+class MedicineStockView(UserMustBeStudentMixin, StudentBaseView, TemplateView):
 
     """Medicine stock information view for students."""
 
@@ -72,17 +77,13 @@ class MedicineStockView(UserMustBeStudentMixin, TemplateView):
     template_name = 'dashboard/student/dashboard_student_medicine_stock.html'
 
     def get_context_data(self, **kwargs):
-        student = Student.objects.get(user=self.request.user)
+        context = super().get_context_data(**kwargs)
         medicines = Medicine.objects.all()
-
-        kwargs.update({
-            'student': student,
-            'medicines': medicines,
-        })
-        return kwargs
+        context['medicines'] = medicines
+        return context
 
 
-class StudentAppointmentListView(UserMustBeStudentMixin, ListView):
+class StudentAppointmentListView(UserMustBeStudentMixin, StudentBaseView, ListView):
 
     """Appointments list view for students."""
 
@@ -90,13 +91,9 @@ class StudentAppointmentListView(UserMustBeStudentMixin, ListView):
     model = Appointment
 
     def get_queryset(self):
-        return Appointment.objects.filter(student__user=self.request.user).order_by('-date_created')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        student = Student.objects.get(user=self.request.user)
-        context['student'] = student
-        return context
+        return Appointment.objects.filter(
+                student__user=self.request.user
+            ).order_by('-date_created')
 
 
 class ListOfDoctors(ListView):
