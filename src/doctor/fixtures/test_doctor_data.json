@@ -1,0 +1,41 @@
+[
+{
+    "model": "doctor.doctor",
+    "pk": 1,
+    "fields": {
+        "user": 7,
+        "image": "doctor_default.png",
+        "name": "Dr. Otto Odom",
+        "about": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vel massa sit amet augue auctor imperdiet. Donec dignissim suscipit dapibus. Praesent accumsan nisl purus, nec viverra sem sagittis vitae.",
+        "education": "Integer sit amet augue a velit fringilla sollicitudin.",
+        "available_description": "Mon - Sat: 7pm - 9pm",
+        "is_available": true
+    }
+},
+{
+    "model": "doctor.doctor",
+    "pk": 2,
+    "fields": {
+        "user": 6,
+        "image": "doctor_default.png",
+        "name": "Dr. Zona Zhao",
+        "about": "Integer sit amet augue a velit fringilla sollicitudin.",
+        "education": "Proin at odio volutpat, lacinia lacus in, efficitur dolor. Interd",
+        "available_description": "Sat: 10am - 1pm, 7pm - 10pm\r\nSun: 10am - 1pm",
+        "is_available": true
+    }
+},
+{
+    "model": "doctor.doctor",
+    "pk": 3,
+    "fields": {
+        "user": 5,
+        "image": "doctor_default.png",
+        "name": "Dr. Jerri Jenkin",
+        "about": "Proin at odio volutpat, lacinia lacus in, efficitur dolor. Interd",
+        "education": "In vehicula urna sit amet nisl ultrices congue. Curabitur nec nulla a tortor posuere lobortis",
+        "available_description": "Mon: 7pm - 10pm",
+        "is_available": true
+    }
+}
+]

@@ -1,0 +1,62 @@
+[
+{
+    "model": "socialaccount.socialapp",
+    "pk": 1,
+    "fields": {
+        "provider": "google",
+        "name": "Google",
+        "client_id": "12345678987654321-.apps.googleusercontent.com",
+        "secret": "gi349t32j239j0139r0j32020923",
+        "key": "",
+        "sites": [
+            1
+        ]
+    }
+},
+{
+    "model": "socialaccount.socialaccount",
+    "pk": 1,
+    "fields": {
+        "user": 8,
+        "provider": "google",
+        "uid": "196479164973264793264",
+        "last_login": "2020-04-23T15:21:00.810Z",
+        "date_joined": "2020-04-23T15:21:00.810Z",
+        "extra_data": "{\"id\": \"196479164973264793264\", \"email\": \"lit2017006@iiitl.ac.in\", \"verified_email\": true, \"name\": \"Vaibhav Gupta\", \"given_name\": \"Vaibhav\", \"family_name\": \"Gupta\", \"picture\": \"https://lh3.googleusercontent.com/-test-vaibhav-gupta/photo.jpg\", \"locale\": \"en\", \"hd\": \"iiitl.ac.in\"}"
+    }
+},
+{
+    "model": "socialaccount.socialaccount",
+    "pk": 2,
+    "fields": {
+        "user": 9,
+        "provider": "google",
+        "uid": "112312423423432534534",
+        "last_login": "2020-04-23T15:27:49.150Z",
+        "date_joined": "2020-04-23T15:27:49.150Z",
+        "extra_data": "{\"id\": \"112312423423432534534\", \"email\": \"lit2017001@iiitl.ac.in\", \"verified_email\": true, \"name\": \"Divy Khare\", \"given_name\": \"Divy\", \"family_name\": \"Khare\", \"picture\": \"https://lh6.googleusercontent.com/-test-divy-khare/photo.jpg\", \"locale\": \"en\", \"hd\": \"iiitl.ac.in\"}"
+    }
+},
+{
+    "model": "socialaccount.socialtoken",
+    "pk": 1,
+    "fields": {
+        "app": 1,
+        "account": 1,
+        "token": "f23e.3ogj2oii230r0230f2i03jto2nevo2eng2jegin2ioehtj34",
+        "token_secret": "",
+        "expires_at": "2020-04-23T16:16:38.704Z"
+    }
+},
+{
+    "model": "socialaccount.socialtoken",
+    "pk": 2,
+    "fields": {
+        "app": 1,
+        "account": 2,
+        "token": "23r2.ijg34iogjio34jgo3o4oi3jo23jo423pi4po32kfo2p3mfpio2",
+        "token_secret": "",
+        "expires_at": "2020-04-23T16:25:36.356Z"
+    }
+}
+]

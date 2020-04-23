@@ -33,7 +33,7 @@ class HomePageView(TemplateView):
     template_name = 'student/home.html'
 
     def get_context_data(self, **kwargs):
-        all_announcements = Announcement.objects.filter(is_posted=True)[:6]
+        all_announcements = Announcement.objects.filter(is_posted=True).order_by('-date_posted')[:6]
         kwargs.update({'announcements': all_announcements})
         return kwargs
 

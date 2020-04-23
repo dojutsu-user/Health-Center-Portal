@@ -1,0 +1,112 @@
+[
+{
+    "model": "medicines.medicine",
+    "pk": 1,
+    "fields": {
+        "name": "Lisinopril",
+        "quantity": 304,
+        "salt": null,
+        "additional_details": null,
+        "is_available": true
+    }
+},
+{
+    "model": "medicines.medicine",
+    "pk": 2,
+    "fields": {
+        "name": "Atorvastatin",
+        "quantity": 285,
+        "salt": null,
+        "additional_details": null,
+        "is_available": true
+    }
+},
+{
+    "model": "medicines.medicine",
+    "pk": 3,
+    "fields": {
+        "name": "Levothyroxine",
+        "quantity": 688,
+        "salt": null,
+        "additional_details": null,
+        "is_available": true
+    }
+},
+{
+    "model": "medicines.medicine",
+    "pk": 4,
+    "fields": {
+        "name": "Metformin Hydrochloride",
+        "quantity": 155,
+        "salt": null,
+        "additional_details": null,
+        "is_available": true
+    }
+},
+{
+    "model": "medicines.medicine",
+    "pk": 5,
+    "fields": {
+        "name": "Amlodipine",
+        "quantity": 925,
+        "salt": null,
+        "additional_details": null,
+        "is_available": true
+    }
+},
+{
+    "model": "medicines.medicine",
+    "pk": 6,
+    "fields": {
+        "name": "Metoprolol",
+        "quantity": 483,
+        "salt": null,
+        "additional_details": null,
+        "is_available": true
+    }
+},
+{
+    "model": "medicines.medicine",
+    "pk": 7,
+    "fields": {
+        "name": "Omeprazole",
+        "quantity": 924,
+        "salt": null,
+        "additional_details": null,
+        "is_available": true
+    }
+},
+{
+    "model": "medicines.medicine",
+    "pk": 8,
+    "fields": {
+        "name": "Simvastatin",
+        "quantity": 486,
+        "salt": null,
+        "additional_details": null,
+        "is_available": true
+    }
+},
+{
+    "model": "medicines.medicine",
+    "pk": 9,
+    "fields": {
+        "name": "Losartan Potassium",
+        "quantity": 288,
+        "salt": null,
+        "additional_details": null,
+        "is_available": true
+    }
+},
+{
+    "model": "medicines.medicine",
+    "pk": 10,
+    "fields": {
+        "name": "Albuterol",
+        "quantity": 941,
+        "salt": null,
+        "additional_details": null,
+        "is_available": true
+    }
+}
+]

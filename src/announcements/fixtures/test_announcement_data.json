@@ -1,0 +1,50 @@
+[
+{
+    "model": "announcements.announcement",
+    "pk": 1,
+    "fields": {
+        "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+        "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vel massa sit amet augue auctor imperdiet. Donec dignissim suscipit dapibus. Praesent accumsan nisl purus, nec viverra sem sagittis vitae. Suspendisse volutpat vel dolor et interdum. Aliquam pulvinar ultrices lacus nec facilisis. Ut sagittis erat massa, nec egestas diam faucibus vitae. Donec ut lorem interdum, pretium elit non, finibus mi. Fusce a bibendum magna. Sed eget luctus ex, non faucibus tellus. Praesent sollicitudin leo elit, in posuere sem semper vel.</p>",
+        "date_posted": "2020-04-12",
+        "is_posted": true,
+        "author": 1,
+        "slug": "lorem-ipsum-dolor-sit-amet-consectetur-adipisc"
+    }
+},
+{
+    "model": "announcements.announcement",
+    "pk": 2,
+    "fields": {
+        "title": "Integer sit amet augue a velit fringilla sollicitudin",
+        "body": "<p>Integer sit amet augue a velit fringilla sollicitudin. Praesent ac libero non tellus volutpat sollicitudin id vitae magna. Curabitur pretium sapien in risus pulvinar, ut ultrices lectus euismod. Quisque sit amet ante arcu. Etiam bibendum feugiat magna, sed ultrices elit consequat quis. In interdum dolor sit amet ullamcorper molestie. Duis dictum risus dolor, eget suscipit quam mattis ac.</p>",
+        "date_posted": "2020-04-21",
+        "is_posted": true,
+        "author": 1,
+        "slug": "integer-sit-amet-augue-a-velit-fringilla-solli"
+    }
+},
+{
+    "model": "announcements.announcement",
+    "pk": 3,
+    "fields": {
+        "title": "In vehicula urna sit amet nisl ultrices congue",
+        "body": "<p>In vehicula urna sit amet nisl ultrices congue. Curabitur nec nulla a tortor posuere lobortis. Nulla sit amet consectetur sem. Fusce mollis iaculis ipsum, et blandit urna tristique quis. Sed egestas nulla vitae justo convallis consectetur. Nam vitae maximus nibh, et efficitur arcu. Nullam sed tincidunt est, at sagittis dolor. Praesent et euismod dui. Sed venenatis ultricies orci vel hendrerit. Fusce consectetur malesuada neque egestas sodales. Nullam at velit a dui luctus tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam venenatis, lacus id aliquam feugiat, purus odio ultrices dui, ac auctor nulla felis eu tellus. In posuere fermentum sagittis. Nunc et blandit sapien. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>",
+        "date_posted": "2020-04-22",
+        "is_posted": true,
+        "author": 1,
+        "slug": "in-vehicula-urna-sit-amet-nisl-ultrices-congue"
+    }
+},
+{
+    "model": "announcements.announcement",
+    "pk": 4,
+    "fields": {
+        "title": "Proin at odio volutpat, lacinia lacus in, efficitur dolor. Interdum et malesuada fames ac",
+        "body": "<p>Proin at odio volutpat, lacinia lacus in, efficitur dolor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam aliquet at ligula quis rhoncus. Morbi porta nisi eu nulla bibendum, vitae tempus arcu volutpat. Proin turpis lorem, dictum et pulvinar a, ultricies vel augue. Vestibulum commodo placerat lectus eu condimentum. Nam finibus ut nibh id vestibulum. Fusce eget felis iaculis, vulputate nulla vitae, blandit sapien. Nunc eget metus vel odio venenatis vestibulum eu at elit. Sed vitae gravida odio, vitae mollis nunc. Ut ultrices erat ligula, in egestas velit lobortis in. Nunc egestas tortor at ex commodo fringilla. Nulla eleifend ipsum quis velit vulputate, id pulvinar ligula tempus.</p>",
+        "date_posted": "2020-04-23",
+        "is_posted": true,
+        "author": 1,
+        "slug": "proin-at-odio-volutpat-lacinia-lacus-in-effici"
+    }
+}
+]

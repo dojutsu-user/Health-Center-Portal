@@ -1,0 +1,54 @@
+[
+{
+    "model": "appointments.appointment",
+    "pk": 1,
+    "fields": {
+        "student": 1,
+        "doctor": 1,
+        "msg": "Praesent justo dui, ultricies efficitur luctus ut, mattis vel nunc.",
+        "date_created": "2020-04-23T16:08:31.361Z",
+        "date_of_appointment": "2020-04-08T12:30:00Z",
+        "is_confirmed": true,
+        "is_cancelled": false
+    }
+},
+{
+    "model": "appointments.appointment",
+    "pk": 2,
+    "fields": {
+        "student": 2,
+        "doctor": 2,
+        "msg": "",
+        "date_created": "2020-04-23T16:08:46.327Z",
+        "date_of_appointment": "2020-04-03T06:30:00Z",
+        "is_confirmed": true,
+        "is_cancelled": false
+    }
+},
+{
+    "model": "appointments.appointment",
+    "pk": 3,
+    "fields": {
+        "student": 1,
+        "doctor": 3,
+        "msg": "",
+        "date_created": "2020-04-23T16:09:00.827Z",
+        "date_of_appointment": "2020-04-05T00:30:00Z",
+        "is_confirmed": false,
+        "is_cancelled": true
+    }
+},
+{
+    "model": "appointments.appointment",
+    "pk": 4,
+    "fields": {
+        "student": 2,
+        "doctor": 1,
+        "msg": "",
+        "date_created": "2020-04-23T16:09:13.043Z",
+        "date_of_appointment": "2020-04-09T06:30:00Z",
+        "is_confirmed": false,
+        "is_cancelled": true
+    }
+}
+]
