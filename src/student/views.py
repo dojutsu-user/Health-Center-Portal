@@ -19,7 +19,7 @@ from student.mixins import UserMustBeStudentMixin
 class StudentBaseView:
 
     def get_context_data(self, **kwargs):
-        context = super().get(**kwargs)
+        context = super().get_context_data(**kwargs)
         student = Student.objects.get(user=self.request.user)
         context['student'] = student
         return context
@@ -64,6 +64,7 @@ class StudentDashboard(UserMustBeStudentMixin, StudentBaseView, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        student = context.get('student')
         visits = VisitHistory.objects.filter(student=student)
         context['visits'] = visits
         return context

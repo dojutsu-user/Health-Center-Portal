@@ -101,20 +101,19 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                            <div class="modal-body">
-                                <p>
-                                    {% if appoint.msg %}
-                                        {{ appoint.msg }}
-                                    {% else %}
-                                        No Reason Found.
-                                    {% endif %}
-                                </p>
-                            </div>
+                        <div class="modal-body">
+                            <p>
+                                {% if appoint.msg %}
+                                    {{ appoint.msg }}
+                                {% else %}
+                                    No Reason Found.
+                                {% endif %}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         {% endif %}
     {% endfor %}
-
 
 {% endblock %}

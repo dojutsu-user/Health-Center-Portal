@@ -1,0 +1,4 @@
+-r pip.txt
+
+pytest-django==3.9.0
+django-dynamic-fixture==3.1.0
