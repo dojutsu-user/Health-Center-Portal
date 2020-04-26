@@ -1,9 +1,9 @@
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SECRET_KEY = '%s0_@=bu@y-$+u161@sfcuo3wgvdvdm*n+j0u3l#j%g2nix8g+'
-DEBUG = True
-ALLOWED_HOSTS = []
+SECRET_KEY = os.environ.get('SECRET_KEY')
+DEBUG = os.environ.get('DEBUG', 0)
+ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS').split()
 
 
 # Application definition
@@ -73,8 +73,12 @@ WSGI_APPLICATION = 'health_center_portal.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ.get('POSTGRES_DB'),
+        'USER': os.environ.get('POSTGRES_USER'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT'),
     }
 }
 
