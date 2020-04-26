@@ -1,0 +1,43 @@
+# base image
+FROM python:3.8-alpine
+
+# setting up the work directory
+WORKDIR /app
+
+# setting up environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# installing dependencies for psycopg2
+RUN apk update && apk add postgresql-dev \
+                          gcc \
+                          python3-dev \
+                          musl-dev
+
+# installing dependencies for pillow
+RUN apk add jpeg-dev \
+            zlib-dev \
+            freetype-dev \
+            lcms2-dev \
+            openjpeg-dev \
+            tiff-dev \
+            tk-dev \
+            tcl-dev
+
+# upgrading pip
+RUN pip install --upgrade pip
+
+# copying requirements file
+COPY requirements/pip.txt requirements/pip.txt
+
+# installing all the requirements
+RUN pip install -r requirements/pip.txt
+
+# copy docker-entrypoint.sh
+COPY dockerfiles/docker-entrypoint.sh dockerfiles/docker-entrypoint.sh
+
+# copying the source files
+COPY . .
+
+# run docker-entrypoint.sh
+ENTRYPOINT [ "/app/dockerfiles/docker-entrypoint.sh" ]
