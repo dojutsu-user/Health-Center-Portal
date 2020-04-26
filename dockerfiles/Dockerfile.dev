@@ -35,9 +35,3 @@ RUN pip install -r requirements/pip.txt
 
 # copy docker-entrypoint.sh
 COPY dockerfiles/docker-entrypoint.sh dockerfiles/docker-entrypoint.sh
-
-# copying the source files
-COPY . .
-
-# run docker-entrypoint.sh
-ENTRYPOINT [ "/app/dockerfiles/docker-entrypoint.sh" ]
