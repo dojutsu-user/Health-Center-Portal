@@ -11,7 +11,7 @@ urlpatterns = [
         name='doctor_dashboard',
     ),
     path(
-        'dashboard/edit-profile/<int:pk>',
+        'dashboard/edit-profile/<int:pk>/',
         doctor_views.DoctorEditProfileView.as_view(),
         name='doctor_edit_profile'
     ),
@@ -31,17 +31,17 @@ urlpatterns = [
         name='doctor_search'
     ),
     path(
-        'dashboard/student-details/<int:pk>',
+        'dashboard/student-details/<int:pk>/',
         doctor_views.DoctorStudentDetail.as_view(),
         name='doctor_student_detail'
     ),
     path(
-        'dashboard/password-change',
+        'dashboard/password-change/',
         doctor_views.DoctorPasswordChangeView.as_view(),
         name='doctor_password_change'
     ),
     path(
-        'dashboard/appointments',
+        'dashboard/appointments/',
         doctor_views.DoctorAppointmentView.as_view(),
         name='doctor_appoint'
     ),

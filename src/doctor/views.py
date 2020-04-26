@@ -106,6 +106,7 @@ class DoctorStudentDetail(UserMustBeDoctorMixin, DoctorBaseView, ListView):
     template_name = 'dashboard/doctor/dashboard_doctor_student_detail.html'
 
     def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
         student_pk = self.kwargs.get('pk')
         student = Student.objects.get(id=student_pk)
         student_name = student.user.get_full_name().title()
