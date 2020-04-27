@@ -4,6 +4,9 @@ FROM python:3.8-alpine
 # setting up the work directory
 WORKDIR /app
 
+# create the app user
+RUN addgroup -S app && adduser -S app -G app
+
 # setting up environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
@@ -28,10 +31,16 @@ RUN apk add jpeg-dev \
 RUN pip install --upgrade pip
 
 # copying requirements file
-COPY requirements/pip.txt requirements/pip.txt
+COPY requirements/ requirements/
 
 # installing all the requirements
-RUN pip install -r requirements/pip.txt
+RUN pip install -r requirements/deploy.txt
 
-# copy docker-entrypoint.dev.sh
-COPY dockerfiles/docker-entrypoint.dev.sh dockerfiles/docker-entrypoint.dev.sh
+# copy project files
+COPY . .
+
+# chown all the files to the app user
+RUN chown -R app:app /app
+
+# change to the app user
+USER app

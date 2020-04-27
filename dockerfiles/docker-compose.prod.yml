@@ -1,0 +1,34 @@
+version: "3"
+
+services:
+
+  db:
+    image: "postgres:12-alpine"
+    restart: always
+    env_file:
+      - ./prod_env_files/postgres_env.env
+
+  web:
+    build:
+      context: ..
+      dockerfile: dockerfiles/Dockerfile.prod
+    command: gunicorn --pythonpath src/ src.health_center_portal.wsgi:application --bind 0.0.0.0:8000
+    depends_on:
+      - db
+    env_file:
+      - ./prod_env_files/postgres_env.env
+      - ./prod_env_files/django_env.env
+    ports:
+      - "8000:8000"
+    expose:
+      - "8000"
+    entrypoint: dockerfiles/docker-entrypoint.prod.sh
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile.prod
+    ports:
+      - "1337:80"
+    depends_on:
+      - web
