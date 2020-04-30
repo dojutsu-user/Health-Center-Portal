@@ -8,7 +8,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     env_file:
-      - ./env_files/postgres_env.env
+      - ./dev_env_files/postgres_env.env
 
   web:
     build:
@@ -20,11 +20,11 @@ services:
     depends_on:
       - db
     env_file:
-      - ./env_files/django_env.env
-      - ./env_files/postgres_env.env
+      - ./dev_env_files/django_env.env
+      - ./dev_env_files/postgres_env.env
     ports:
       - "8000:8000"
-    entrypoint: dockerfiles/docker-entrypoint.sh
+    entrypoint: dockerfiles/docker-entrypoint.dev.sh
 
 volumes:
   postgres_data:
