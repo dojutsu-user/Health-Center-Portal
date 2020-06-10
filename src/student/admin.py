@@ -56,8 +56,9 @@ class CustomUserAdmin(UserAdmin):
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
-        if not request.user.superuser:
+        if not request.user.is_superuser:
             qs = qs.filter(username=request.user.username)
+        return qs
 
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
