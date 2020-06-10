@@ -61,16 +61,10 @@ class CustomUserAdmin(UserAdmin):
         return qs
 
     def get_form(self, request, obj=None, **kwargs):
+
         form = super().get_form(request, obj, **kwargs)
         is_superuser = request.user.is_superuser
         disabled_fields = set()
-
-        if not is_superuser:
-            disabled_fields |= {
-                'username',
-                'is_superuser',
-                'user_permissions',
-            }
 
         if (
             not is_superuser
@@ -78,10 +72,14 @@ class CustomUserAdmin(UserAdmin):
             and obj == request.user
         ):
             disabled_fields |= {
+                'username',
+                'is_active',
                 'is_staff',
                 'is_superuser',
                 'groups',
                 'user_permissions',
+                'last_login',
+                'date_joined',
             }
 
         for f in disabled_fields:
@@ -93,4 +91,4 @@ class CustomUserAdmin(UserAdmin):
 
 admin.site.register(Student, StudentAdmin)
 admin.site.register(VisitHistory, VisitHistoryAdmin)
-admin.site.register(User, UserAdmin)
+admin.site.register(User, CustomUserAdmin)
