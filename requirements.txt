@@ -1,1 +1,1 @@
--r requirements/pip.txt
+-r requirements/heroku-deploy.txt

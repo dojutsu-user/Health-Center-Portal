@@ -1,0 +1,3 @@
+-r deploy.txt
+
+django_heroku==0.3.1

@@ -1,4 +1,5 @@
 import os
+import django_heroku
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SECRET_KEY')
@@ -196,3 +197,7 @@ CKEDITOR_CONFIGS = {
 # Project Specific Settings
 DOCTOR_DP_UPLOAD_FOLDER = 'doctor_dp'
 MAX_ALLOWED_IMAGE_SIZE_IN_MB = 2
+
+
+# heroku settings
+django_heroku.settings(locals())
