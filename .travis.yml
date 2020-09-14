@@ -16,7 +16,7 @@ before_install:
   - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
 
 install:
-  sed 's/${PYTHON_VERSION}/${PYTHON_VERSION}/g' Dockerfile.tmpl  > dockerfiles/Dockerfile.dev
+  sed 's/${PYTHON_VERSION}/${PYTHON_VERSION}/g' Dockerfile.tmpl  > dockerfiles/Dockerfile.test
   docker-compose -f dockerfiles/docker-compose.test.yml build
 
 script:
