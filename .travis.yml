@@ -17,11 +17,10 @@ before_install:
 
 install:
   - sed -e "s/\${PYTHON_VERSION}/${PYTHON_VERSION}/" dockerfiles/Dockerfile.test.tmpl  > dockerfiles/Dockerfile.test
-  - cat dockerfiles/Dockerfile.test
   - docker-compose -f dockerfiles/docker-compose.test.yml build
 
 script:
-  - docker-compose -f docker-compose.test.yml run --rm --no-deps -e PYTHON_VERSION=${PYTHON_VERSION} web
+  - docker-compose -f dockerfiles/docker-compose.test.yml run --rm --no-deps -e PYTHON_VERSION=${PYTHON_VERSION} web
 
 jobs:
   include:
