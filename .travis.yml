@@ -30,4 +30,4 @@ jobs:
       env: PYTHON_VERSION=3.8
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - codecov
