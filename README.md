@@ -10,18 +10,18 @@ This is a health center portal for managing a health center for a college.
 
 - [Features](#features)
 - [Setup](#setup)
-  * [Starting The Local Server](#sub-heading)
-  * [Loading The Demo Data]()
-  * [Running The Tests]()
-- [Project Specific Settings]()
-  * [Change Max Upload Limit Of Display Picture For Doctors]()
-  * [Add/Remove Allowed Domains For Login/SignUp]()
-  * [Change Logo Of The Website]()
-- [Guides]()
-  * [How To Setup Permissions For Staff]()'
-  * [How To Add A Doctor]()
-  * [How To Add A Visit History]()
-- [Screenshots]()
+  * [Starting The Local Server](#starting-the-local-server)
+  * [Loading The Demo Data](#loading-the-demo-data)
+  * [Running The Tests](#running-the-tests)
+- [Project Specific Settings](#project-specific-settings)
+  * [Change Max Upload Limit Of Display Picture For Doctors](#change-max-upload-limit-of-display-picture-for-doctors)
+  * [Add/Remove Allowed Domains For Login/SignUp](#addremove-allowed-domains-for-loginsignup)
+  * [Change Logo Of The Website](#change-logo-of-the-website)
+- [Guides](#guides)
+  * [How To Setup Permissions For Staff](#how-to-setup-permissions-for-staff)
+  * [How To Add A Doctor](#how-to-add-a-doctor)
+  * [How To Add A Visit History](#how-to-add-a-visit-history)
+- [Screenshots](#screenshots)
 
 ## Features
 
