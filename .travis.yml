@@ -17,6 +17,8 @@ before_install:
 
 install:
   - sed 's/${PYTHON_VERSION}/${PYTHON_VERSION}/g' dockerfiles/Dockerfile.test.tmpl  > dockerfiles/Dockerfile.test
+  - ls
+  - cat dockerfiles/Dockerfile.test
   - docker-compose -f dockerfiles/docker-compose.test.yml build
 
 script:
