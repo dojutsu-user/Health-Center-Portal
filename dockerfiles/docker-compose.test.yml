@@ -6,7 +6,4 @@ services:
     build:
       context: ../
       dockerfile: dockerfiles/Dockerfile.test
-    env_file:
-      - ./dev_env_files/django_env.env
-      - ./dev_env_files/postgres_env.env
     entrypoint: dockerfiles/docker-entrypoint.test.sh
