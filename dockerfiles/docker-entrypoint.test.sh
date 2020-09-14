@@ -2,4 +2,4 @@
 pip install tox==3.20.0
 pip install codecov
 tox -e${PYTHON_VERSION}
-bash -c "bash <(curl -s https://codecov.io/bash)"
+sh -c "sh <(curl -s https://codecov.io/bash)"
