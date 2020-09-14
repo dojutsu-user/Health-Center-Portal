@@ -23,5 +23,5 @@ script:
   - docker-compose -f docker-compose.test.yml run --rm --no-deps -e PYTHON_VERSION=${PYTHON_VERSION} web
 
 matrix:
-  PYTHON_VERSION=3.7
-  PYTHON_VERSION=3.8
+  - PYTHON_VERSION=3.7
+  - PYTHON_VERSION=3.8
