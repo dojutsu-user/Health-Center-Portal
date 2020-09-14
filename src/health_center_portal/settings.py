@@ -86,7 +86,7 @@ SQLITE3_DB_INFO = {
     "NAME": os.path.join(BASE_DIR, 'db.sqlite3'),
 }
 
-is_using_postgres = True if os.environ.get('POSTGRES_DB') != None else False
+is_using_postgres = True if os.environ.get('POSTGRES_DB', None) != None else False
 
 DATABASES = {
     'default': POSTGRES_DB_INFO if is_using_postgres else SQLITE3_DB_INFO
