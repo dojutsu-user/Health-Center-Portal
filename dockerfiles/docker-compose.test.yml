@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+
+  web:
+    build:
+      context: ../
+      dockerfile: dockerfiles/Dockerfile.test
+    env_file:
+      - ./dev_env_files/django_env.env
+      - ./dev_env_files/postgres_env.env
+    ports:
+      - "8000:8000"
+    entrypoint: dockerfiles/docker-entrypoint.test.sh
