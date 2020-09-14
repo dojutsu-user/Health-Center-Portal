@@ -20,6 +20,8 @@ install:
   - docker-compose -f dockerfiles/docker-compose.test.yml build
 
 script:
+  - ci_env=`bash <(curl -s https://codecov.io/env)`
+  - ${ci_env}
   - docker-compose -f dockerfiles/docker-compose.test.yml run --rm --no-deps -e PYTHON_VERSION=${PYTHON_VERSION} -e CODECOV_TOKEN=${CODECOV_TOKEN} web
 
 jobs:
