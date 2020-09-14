@@ -1,9 +1,9 @@
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY', 'test-key')
 DEBUG = int(os.environ.get('DEBUG', '0'))
-ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS').split()
+ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', '').split()
 
 
 # Application definition
@@ -71,15 +71,25 @@ WSGI_APPLICATION = 'health_center_portal.wsgi.application'
 
 # Database
 
+# to be taken from enivronment variables
+POSTGRES_DB_INFO = {
+    'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    'NAME': os.environ.get('POSTGRES_DB'),
+    'USER': os.environ.get('POSTGRES_USER'),
+    'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+    'HOST': os.environ.get('DB_HOST'),
+    'PORT': os.environ.get('DB_PORT'),
+}
+
+SQLITE3_DB_INFO = {
+    "ENGINE": "django.db.backends.sqlite3",
+    "NAME": os.path.join(BASE_DIR, 'db.sqlite3'),
+}
+
+is_using_postgres = True if os.environ.get('POSTGRES_DB') != None else False
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get('POSTGRES_DB'),
-        'USER': os.environ.get('POSTGRES_USER'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-        'HOST': os.environ.get('DB_HOST'),
-        'PORT': os.environ.get('DB_PORT'),
-    }
+    'default': POSTGRES_DB_INFO if is_using_postgres else SQLITE3_DB_INFO
 }
 
 
