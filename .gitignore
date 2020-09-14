@@ -132,3 +132,5 @@ dmypy.json
 media/
 
 staticfiles/
+codecov.sh
+coverage.xml
