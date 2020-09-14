@@ -14,6 +14,8 @@ RUN apk update && apk add postgresql-dev \
                           python3-dev \
                           musl-dev
 
+RUN apk --no-cache add curl
+
 # installing dependencies for pillow
 RUN apk add jpeg-dev \
             zlib-dev \
