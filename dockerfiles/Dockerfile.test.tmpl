@@ -27,17 +27,11 @@ RUN apk add jpeg-dev \
 # upgrading pip
 RUN pip install --upgrade pip
 
-# copying requirements file
-COPY requirements/pip.txt requirements/pip.txt
-COPY requirements/testing.txt requirements/testing.txt
+# copying files
+COPY . .
 
 # installing all the requirements
 RUN pip install -r requirements/testing.txt
 
-# copy entrypoint scripts
-COPY dockerfiles/docker-entrypoint.dev.sh dockerfiles/docker-entrypoint.dev.sh
-COPY dockerfiles/docker-entrypoint.test.sh dockerfiles/docker-entrypoint.test.sh
-
 # make entrypoint scripts executable
-RUN chmod +x dockerfiles/docker-entrypoint.dev.sh
 RUN chmod +x dockerfiles/docker-entrypoint.test.sh
