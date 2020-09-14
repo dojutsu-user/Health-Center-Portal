@@ -4,4 +4,4 @@ pip install codecov
 tox -e${PYTHON_VERSION}
 curl -s https://codecov.io/bash > codecov.sh
 chmod +x codecov.sh
-./codecov.sh -t ${CODECOV_TOKEN}
+./codecov.sh
